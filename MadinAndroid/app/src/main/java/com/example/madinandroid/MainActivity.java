@@ -3,6 +3,7 @@ package com.example.madinandroid;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 
@@ -11,12 +12,10 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    TabLayout tabs;
-    Toolbar toolbar;
-
-    Fragment0 fragment0;
-    Fragment1 fragment1;
-    Fragment2 fragment2;
+    private Toolbar toolbar;
+    private ViewPager2 viewPager;
+    private PagerAdapter pagerAdapter;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,31 +25,28 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fragment0 = new Fragment0();
-        fragment1 = new Fragment1();
-        fragment2 = new Fragment2();
+        tabLayout = (TabLayout)findViewById(R.id.tabs);
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_0));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_1));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_2));
 
-        getSupportFragmentManager().beginTransaction().add(R.id.tabFrame, fragment0).commit();
+        viewPager = (ViewPager2)findViewById(R.id.viewPager);
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), getLifecycle());
 
-        tabs = findViewById(R.id.tabs);
-        tabs.addTab(tabs.newTab().setText(R.string.tab_1));
-        tabs.addTab(tabs.newTab().setText(R.string.tab_2));
-        tabs.addTab(tabs.newTab().setText(R.string.tab_3));
+        pagerAdapter.addFragment(new Fragment0());
+        pagerAdapter.addFragment(new Fragment1());
+        pagerAdapter.addFragment(new Fragment2());
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.setUserInputEnabled(false);
 
-        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
-                Fragment selected = null;
-                if (position == 0)
-                    selected = fragment0;
-                else if (position == 1)
-                    selected = fragment1;
-                else if (position == 2)
-                    selected = fragment2;
-                getSupportFragmentManager().beginTransaction().replace(R.id.tabFrame, selected).commit();
+                if (position >= 0 && position <= 2) {
+                    viewPager.setCurrentItem(position);
+                }
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
@@ -61,6 +57,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
 }
