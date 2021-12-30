@@ -1,14 +1,21 @@
 package com.example.madinandroid;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-
+import android.util.Log;
 
 import com.google.android.material.tabs.TabLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,10 +24,34 @@ public class MainActivity extends AppCompatActivity {
     private PagerAdapter pagerAdapter;
     private TabLayout tabLayout;
 
+    private Fragment0 fragment0;
+    private Fragment1 fragment1;
+    private Fragment2 fragment2;
+
+    static JSONArray books;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try{
+            InputStream is = getAssets().open("Books.json");
+            int fileSize = is.available();
+
+            byte[] buffer = new byte[fileSize];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+
+            JSONObject jsonOb = new JSONObject(json);
+            books = jsonOb.getJSONArray("Books");
+
+        } catch(IOException i) {
+            i.printStackTrace();
+        } catch(JSONException j) {
+            j.printStackTrace();
+        }
 
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -33,9 +64,14 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager2)findViewById(R.id.viewPager);
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), getLifecycle());
 
-        pagerAdapter.addFragment(new Fragment0());
-        pagerAdapter.addFragment(new Fragment1());
-        pagerAdapter.addFragment(new Fragment2());
+        fragment0 = new Fragment0();
+        fragment1 = new Fragment1();
+        fragment2 = new Fragment2();
+
+        pagerAdapter.addFragment(fragment0);
+        pagerAdapter.addFragment(fragment1);
+        pagerAdapter.addFragment(fragment2);
+
         viewPager.setAdapter(pagerAdapter);
         viewPager.setUserInputEnabled(false);
 
@@ -48,14 +84,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabUnselected(TabLayout.Tab tab) { }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabReselected(TabLayout.Tab tab) { }
         });
+
+
     }
 }
