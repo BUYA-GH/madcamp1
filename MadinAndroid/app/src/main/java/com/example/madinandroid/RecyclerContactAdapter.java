@@ -1,6 +1,7 @@
 package com.example.madinandroid;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContactAdapter.ContactViewHolder> {
 
-    String[] names, phones, emails;
+    String[] names, phones, emails, backgroundColors;
     int[] imgSources;
     Context context;
 
-    public RecyclerContactAdapter(Context ct, String[] ns, String[] ps, String[] es, int[] imgSrc) {
+    public RecyclerContactAdapter(Context ct, String[] ns, String[] ps, String[] es, int[] imgSrc, String[] bgc) {
         context = ct;
         names = ns;
         phones = ps;
         emails = es;
         imgSources = imgSrc;
+        backgroundColors = bgc;
     }
 
     @NonNull
@@ -38,6 +40,7 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
         holder.phoneText.setText(phones[position]);
         holder.emailText.setText(emails[position]);
         holder.imgView.setImageResource(imgSources[position]);
+        holder.imgView.setBackgroundColor(Color.parseColor(backgroundColors[position]));
     }
 
     @Override

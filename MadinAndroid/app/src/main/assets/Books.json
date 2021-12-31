@@ -3,12 +3,14 @@
     "name": "Kim Gana",
     "phone": "010-1234-5678",
     "email": "naverchoigo@daum.net",
-    "image": "mulempyo"
+    "image": "img_cat",
+    "color": "#FF0000"
   },
   {
     "name": "Lee Dala",
     "phone": "010-0987-6543",
     "email": "daumbest@naver.com",
-    "image": "neukkimpyo"
+    "image": "img_dog",
+    "color": "#00FF00"
   }
 ]}

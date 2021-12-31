@@ -1,6 +1,7 @@
 package com.example.madinandroid;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerGalleryAdapter extends RecyclerView.Adapter<RecyclerGalleryAdapter.GalleryViewHolder> {
-    String[] names;
+    String[] names, backColor;
     int[] imgSources;
     Context context;
 
-    public RecyclerGalleryAdapter(Context ct, int[] imgSrc, String[] nm) {
+    public RecyclerGalleryAdapter(Context ct, int[] imgSrc, String[] nm, String[] back) {
         names = nm;
         context = ct;
         imgSources = imgSrc;
+        backColor = back;
     }
 
     @NonNull
@@ -33,6 +35,7 @@ public class RecyclerGalleryAdapter extends RecyclerView.Adapter<RecyclerGallery
     public void onBindViewHolder(@NonNull RecyclerGalleryAdapter.GalleryViewHolder holder, int position) {
         holder.nameText.setText(names[position]);
         holder.imgView.setImageResource(imgSources[position]);
+        holder.imgView.setBackgroundColor(Color.parseColor(backColor[position]));
     }
 
     @Override

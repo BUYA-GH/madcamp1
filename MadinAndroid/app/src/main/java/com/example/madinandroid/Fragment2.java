@@ -1,6 +1,7 @@
 package com.example.madinandroid;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,7 +33,8 @@ public class Fragment2 extends Fragment {
     private EditText nameEdit;
     private EditText phoneEdit;
     private EditText emailEdit;
-    private int imgSrc = R.drawable.mulempyo;
+    private int imgSrc = R.drawable.img_cat;
+    private int[] colorValues = {255, 255, 255};
 
     private ActivityResultLauncher<Intent> resultLauncher;
 
@@ -57,10 +59,11 @@ public class Fragment2 extends Fragment {
                 if(result.getResultCode() == RESULT_OK) {
                     Log.d("ActivityBack", "Back to Activity Successfully");
                     Intent intent = result.getData();
-                    imgSrc = intent.getIntExtra("img", R.drawable.mulempyo);
+                    imgSrc = intent.getIntExtra("img", R.drawable.img_cat);
+                    colorValues = intent.getIntArrayExtra("colors");
 
                     imgBtn.setImageResource(imgSrc);
-
+                    imgBtn.setBackgroundColor(Color.parseColor(parsingHex()));
                 }
             }
         });
@@ -91,6 +94,7 @@ public class Fragment2 extends Fragment {
                     newOb.put("phone", p);
                     newOb.put("email", e);
                     newOb.put("image", getResources().getResourceEntryName(imgSrc));
+                    newOb.put("color", parsingHex());
 
                     books.put(newOb);
                 } catch(JSONException j) {
@@ -100,5 +104,20 @@ public class Fragment2 extends Fragment {
         });
 
         return view;
+    }
+
+    public String parsingHex() {
+        String a, b, c;
+
+        a = Integer.toHexString(colorValues[0]);
+        if(colorValues[0] <= 15)  a = "0" + a;
+
+        b = Integer.toHexString(colorValues[1]);
+        if(colorValues[1] <= 15)  b = "0" + b;
+
+        c = Integer.toHexString(colorValues[2]);
+        if(colorValues[2] <= 15)  c = "0" + c;
+
+        return "#" + a + b + c;
     }
 }
