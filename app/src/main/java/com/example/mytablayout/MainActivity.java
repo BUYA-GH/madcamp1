@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // reset current selectedTab when page changed
         pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
