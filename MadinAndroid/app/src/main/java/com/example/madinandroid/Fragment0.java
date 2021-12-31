@@ -41,7 +41,7 @@ public class Fragment0 extends Fragment {
 
     @Override
     public void onResume() {
-        Log.d("LifeCycleCheck", "I am in onResume in Fragment1");
+        Log.d("LifeCycleCheck", "I am in onResume in Fragment0");
         super.onResume();
 
         ns = new String[books.length()];
@@ -63,8 +63,8 @@ public class Fragment0 extends Fragment {
             j.printStackTrace();
         }
 
-        recyclerAdapter = new RecyclerContactAdapter(getActivity().getApplicationContext(), ns, ps, es, imgSrc);
+        recyclerAdapter = new RecyclerContactAdapter(getActivity(), ns, ps, es, imgSrc);
         recyclerView.setAdapter(recyclerAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 }

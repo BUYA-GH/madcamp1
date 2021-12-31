@@ -31,14 +31,15 @@ public class Fragment1 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d("LifeCycleCheck", "I am in onCreateView in Fragment1");
         View view = inflater.inflate(R.layout.fragment1, container, false);
-
         recyclerview = (RecyclerView)view.findViewById(R.id.galleryRecyclerView);
+
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        Log.d("LifeCycleCheck", "I am in onResume in Fragment1");
 
         ns = new String[books.length()];
         imgSrc = new int[books.length()];

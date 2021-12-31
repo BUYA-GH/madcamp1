@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private PagerAdapter pagerAdapter;
     private TabLayout tabLayout;
 
-    private Fragment0 fragment0;
-    private Fragment1 fragment1;
-    private Fragment2 fragment2;
+    //private Fragment0 fragment0;
+    //private Fragment1 fragment1;
+    //private Fragment2 fragment2;
 
     static JSONArray books;
 
@@ -47,41 +47,24 @@ public class MainActivity extends AppCompatActivity {
             JSONObject jsonOb = new JSONObject(json);
             books = jsonOb.getJSONArray("Books");
 
-        } catch(IOException i) {
+        } catch(IOException | JSONException i) {
             i.printStackTrace();
-        } catch(JSONException j) {
-            j.printStackTrace();
         }
-
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         tabLayout = (TabLayout)findViewById(R.id.tabs);
+
+        viewPager = (ViewPager2)findViewById(R.id.viewPager);
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), getLifecycle());
+        viewPager.setAdapter(pagerAdapter);
+
+
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_0));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_1));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_2));
 
-        viewPager = (ViewPager2)findViewById(R.id.viewPager);
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), getLifecycle());
-
-        fragment0 = new Fragment0();
-        fragment1 = new Fragment1();
-        fragment2 = new Fragment2();
-
-        pagerAdapter.addFragment(fragment0);
-        pagerAdapter.addFragment(fragment1);
-        pagerAdapter.addFragment(fragment2);
-
-        viewPager.setAdapter(pagerAdapter);
-        viewPager.setUserInputEnabled(false);
-
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                int position = tab.getPosition();
-                if (position >= 0 && position <= 2) {
-                    viewPager.setCurrentItem(position);
-                }
+                viewPager.setCurrentItem(tab.getPosition());
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) { }
@@ -91,5 +74,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                tabLayout.selectTab(tabLayout.getTabAt(position));
+            }
+        });
     }
 }
