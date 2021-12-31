@@ -16,18 +16,23 @@ public class PagerAdapter extends FragmentStateAdapter {
         super(fragmentManager, lifecycle);
     }
 
-    public void addFragment(Fragment fragment) {
-        fragments.add(fragment);
-    }
-
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return fragments.get(position);
+        switch(position)
+        {
+            case 1:
+                return new Fragment1();
+            case 2:
+                return new Fragment2();
+        }
+        return new Fragment0();
+
     }
 
     @Override
     public int getItemCount() {
-        return fragments.size();
+        return 3;
     }
+
 }
