@@ -1,5 +1,6 @@
 package com.example.madinandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,21 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.util.ArrayList;
 
 import static com.example.madinandroid.MainActivity.books;
 
-
-public class Fragment1 extends Fragment {
+public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImageListener {
     private RecyclerView recyclerview;
     RecyclerGalleryAdapter recyclerAdapter;
 
-    private int[] imgSrc;
-    private String[] ns, backColor;
+    private ArrayList<Integer> imgSrc = new ArrayList<>();
+    //private int[] imgSrc;
+    //private String[] ns, backColor;
 
     @Nullable
     @Override
@@ -41,27 +42,29 @@ public class Fragment1 extends Fragment {
         super.onResume();
         Log.d("LifeCycleCheck", "I am in onResume in Fragment1");
 
-        ns = new String[books.length()];
-        imgSrc = new int[books.length()];
-        backColor = new String[books.length()];
-
         try {
             JSONObject tmp = null;
             for(int i = 0; i < books.length(); ++i) {
                 tmp = (JSONObject)books.get(i);
-                ns[i] = (String)tmp.get("name");
-                tmp = (JSONObject)books.get(i);
-                String imgName = (String)tmp.get("image");
-                imgSrc[i] = getActivity().getResources().getIdentifier(imgName, "drawable", getActivity().getPackageName());
-                backColor[i] = (String)tmp.get("color");
+                String img = (String)tmp.get("image");
+                int imgID = getActivity().getResources().getIdentifier(img, "drawable", getActivity().getPackageName());
+
+                if(imgSrc.indexOf(imgID) == -1) imgSrc.add(imgID);
             }
-        } catch(JSONException j) {
+        } catch (JSONException j) {
             j.printStackTrace();
         }
 
-        recyclerAdapter = new RecyclerGalleryAdapter(getActivity().getApplicationContext(), imgSrc, ns, backColor);
+        recyclerAdapter = new RecyclerGalleryAdapter(getActivity(), imgSrc, this);
         recyclerview.setAdapter(recyclerAdapter);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 2));
+    }
 
+    @Override
+    public void onImageClick(int position) {
+        int img = imgSrc.get(position);
+        Intent intent = new Intent(getActivity(), GalleryDetailsActivity.class);
+        intent.putExtra("img", getResources().getResourceEntryName(img));
+        startActivity(intent);
     }
 }

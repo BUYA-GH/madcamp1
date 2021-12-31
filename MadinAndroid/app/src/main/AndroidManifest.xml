@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MakeImoActivity"/>
+        <activity android:name=".GalleryDetailsActivity"/>
     </application>
 
 </manifest>
