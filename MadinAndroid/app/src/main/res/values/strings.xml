@@ -4,11 +4,27 @@
     <string name="tab_1">Images</string>
     <string name="tab_2">Add</string>
     <string-array name="imoName">
-        <item>mulempyo</item>
-        <item>neukkimpyo</item>
+        <item>Mulempyo</item>
+        <item>Neukkimpyo</item>
+        <item>Cat</item>
+        <item>Clown</item>
+        <item>Devil</item>
+        <item>Dog</item>
+        <item>Heart</item>
+        <item>Money</item>
+        <item>Party</item>
+        <item>Poop</item>
     </string-array>
     <string-array name="description">
         <item>Hi? I am mulempyo?? Mul?em</item>
         <item>Hi! I am neukkimpyo! kkam!jjack</item>
+        <item>Meow!</item>
+        <item>E-He-He</item>
+        <item>devil</item>
+        <item>Bow bow!</item>
+        <item>heart</item>
+        <item>money</item>
+        <item>party</item>
+        <item>poop</item>
     </string-array>
 </resources>

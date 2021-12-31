@@ -17,7 +17,8 @@ public class MakeImoActivity extends AppCompatActivity implements RecyclerImoAda
 
     private String[] imoName;
     private String[] description;
-    int images[] = {R.drawable.mulempyo, R.drawable.neukkimpyo};
+    int images[] = {R.drawable.mulempyo, R.drawable.neukkimpyo, R.drawable.img_cat, R.drawable.img_clown, R.drawable.img_devil,
+            R.drawable.img_dog, R.drawable.img_heart, R.drawable.img_money, R.drawable.img_party, R.drawable.img_poop};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
