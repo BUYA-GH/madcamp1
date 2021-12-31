@@ -1,14 +1,9 @@
 package com.example.madinandroid;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
-
-import android.os.Bundle;
-import android.util.Log;
-
 import com.google.android.material.tabs.TabLayout;
+import android.os.Bundle;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,14 +14,9 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private ViewPager2 viewPager;
     private PagerAdapter pagerAdapter;
     private TabLayout tabLayout;
-
-    //private Fragment0 fragment0;
-    //private Fragment1 fragment1;
-    //private Fragment2 fragment2;
 
     static JSONArray books;
 
@@ -55,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager2)findViewById(R.id.viewPager);
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
-
 
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_0));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_1));

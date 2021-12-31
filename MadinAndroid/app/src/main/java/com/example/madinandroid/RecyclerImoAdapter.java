@@ -11,18 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerImoAdapter extends RecyclerView.Adapter<RecyclerImoAdapter.ImoViewHolder> {
-    String[] imoName, description;
     int images[];
     Context context;
 
-    private OnButtonListener mOnButtonListener;
+    private OnImageListener mOnImageListener;
 
-    public RecyclerImoAdapter(Context ct, String[] imoName, String[] description, int img[], OnButtonListener onButtonListener) {
+    public RecyclerImoAdapter(Context ct, int img[], OnImageListener onImageListener) {
         context = ct;
-        this.imoName = imoName;
-        this.description = description;
         images = img;
-        this.mOnButtonListener = onButtonListener;
+        this.mOnImageListener = onImageListener;
     }
 
     @NonNull
@@ -30,44 +27,39 @@ public class RecyclerImoAdapter extends RecyclerView.Adapter<RecyclerImoAdapter.
     public ImoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.imo_row, parent, false);
-        return new ImoViewHolder(view, mOnButtonListener);
+        return new ImoViewHolder(view, mOnImageListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ImoViewHolder holder, int position) {
-        holder.imoNameText.setText(imoName[position]);
-        holder.descripText.setText(description[position]);
         holder.imoImage.setImageResource(images[position]);
     }
 
     @Override
     public int getItemCount() {
-        return imoName.length;
+        return images.length;
     }
 
     public class ImoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView imoNameText, descripText;
         ImageView imoImage;
-        OnButtonListener onButtonListener;
+        OnImageListener onImageListener;
 
-        public ImoViewHolder(@NonNull View itemView, OnButtonListener onButtonListener) {
+        public ImoViewHolder(@NonNull View itemView, OnImageListener onImageListener) {
             super(itemView);
-            imoNameText = itemView.findViewById(R.id.imoNameView);
-            descripText = itemView.findViewById(R.id.imoDescriptView);
             imoImage = itemView.findViewById(R.id.imoImageView);
-            this.onButtonListener = onButtonListener;
+            this.onImageListener = onImageListener;
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            onButtonListener.onButtonClick(getAdapterPosition());
+            onImageListener.onImageClick(getAdapterPosition());
         }
     }
 
-    public interface OnButtonListener {
-        void onButtonClick(int position);
+    public interface OnImageListener {
+        void onImageClick(int position);
     }
 }

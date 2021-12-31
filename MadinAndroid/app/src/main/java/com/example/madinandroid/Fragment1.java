@@ -24,7 +24,7 @@ public class Fragment1 extends Fragment {
     RecyclerGalleryAdapter recyclerAdapter;
 
     private int[] imgSrc;
-    private String[] ns;
+    private String[] ns, backColor;
 
     @Nullable
     @Override
@@ -43,6 +43,7 @@ public class Fragment1 extends Fragment {
 
         ns = new String[books.length()];
         imgSrc = new int[books.length()];
+        backColor = new String[books.length()];
 
         try {
             JSONObject tmp = null;
@@ -50,14 +51,15 @@ public class Fragment1 extends Fragment {
                 tmp = (JSONObject)books.get(i);
                 ns[i] = (String)tmp.get("name");
                 tmp = (JSONObject)books.get(i);
-                String imgname = (String)tmp.get("image");
-                imgSrc[i] = getActivity().getResources().getIdentifier(imgname, "drawable", getActivity().getPackageName());
+                String imgName = (String)tmp.get("image");
+                imgSrc[i] = getActivity().getResources().getIdentifier(imgName, "drawable", getActivity().getPackageName());
+                backColor[i] = (String)tmp.get("color");
             }
         } catch(JSONException j) {
             j.printStackTrace();
         }
 
-        recyclerAdapter = new RecyclerGalleryAdapter(getActivity().getApplicationContext(), imgSrc, ns);
+        recyclerAdapter = new RecyclerGalleryAdapter(getActivity().getApplicationContext(), imgSrc, ns, backColor);
         recyclerview.setAdapter(recyclerAdapter);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 2));
 

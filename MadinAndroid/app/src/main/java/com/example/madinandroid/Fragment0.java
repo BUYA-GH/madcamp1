@@ -28,6 +28,7 @@ public class Fragment0 extends Fragment {
     private String[] ps;
     private String[] es;
     private int[] imgSrc;
+    private String[] backgroundColor;
 
     @Nullable
     @Override
@@ -48,6 +49,7 @@ public class Fragment0 extends Fragment {
         ps = new String[books.length()];
         es = new String[books.length()];
         imgSrc = new int[books.length()];
+        backgroundColor = new String[books.length()];
 
         try{
             JSONObject tmp = null;
@@ -58,12 +60,13 @@ public class Fragment0 extends Fragment {
                 es[i] = (String)tmp.get("email");
                 String imgname = (String)tmp.get("image");
                 imgSrc[i] = getActivity().getResources().getIdentifier(imgname, "drawable", getActivity().getPackageName());
+                backgroundColor[i] = (String)tmp.get("color");
             }
         } catch(JSONException j) {
             j.printStackTrace();
         }
 
-        recyclerAdapter = new RecyclerContactAdapter(getActivity(), ns, ps, es, imgSrc);
+        recyclerAdapter = new RecyclerContactAdapter(getActivity(), ns, ps, es, imgSrc, backgroundColor);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
