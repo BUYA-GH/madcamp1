@@ -25,6 +25,7 @@ import org.json.JSONObject;
 
 import static android.app.Activity.RESULT_OK;
 import static com.example.madinandroid.MainActivity.books;
+import static com.example.madinandroid.MainActivity.nowId;
 
 public class Fragment2 extends Fragment {
     private ImageButton imgBtn;
@@ -37,6 +38,9 @@ public class Fragment2 extends Fragment {
     private int[] colorValues = {255, 255, 255};
 
     private ActivityResultLauncher<Intent> resultLauncher;
+
+    private String name, phone, email, color;
+    private int image;
 
     @Nullable
     @Override
@@ -52,6 +56,7 @@ public class Fragment2 extends Fragment {
         phoneEdit = view.findViewById(R.id.phoneInput);
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
         imgBtn.setBackgroundColor(Color.parseColor(parsingHex()));
 
         resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -90,6 +95,7 @@ public class Fragment2 extends Fragment {
 
                 try{
                     JSONObject newOb = new JSONObject();
+                    newOb.put("id", Integer.toString(++nowId));
                     newOb.put("name", n);
                     newOb.put("phone", p);
                     newOb.put("email", e);
@@ -100,6 +106,9 @@ public class Fragment2 extends Fragment {
                 } catch(JSONException j) {
                     j.printStackTrace();
                 }
+
+                String json = books.toString();
+                PreferenceManager.setString(getActivity(), "books", json);
             }
         });
 

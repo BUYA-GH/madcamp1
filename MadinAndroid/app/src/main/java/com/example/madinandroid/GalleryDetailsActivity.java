@@ -15,13 +15,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.example.madinandroid.FragmentCard.fragmentEdit;
 import static com.example.madinandroid.MainActivity.books;
 
 public class GalleryDetailsActivity extends AppCompatActivity implements RecyclerGalleryDetailAdapter.OnImageListener {
@@ -30,6 +29,7 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
     private ArrayList<String> phones = new ArrayList<>();
     private ArrayList<String> emails = new ArrayList<>();
     private ArrayList<String> hexs = new ArrayList<>();
+    private ArrayList<String> ids = new ArrayList<>();
 
     private RecyclerView recyclerDetailGallery;
     private RecyclerGalleryDetailAdapter recyclerAdapter;
@@ -58,6 +58,7 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
                     phones.add((String)tmp.get("phone"));
                     emails.add((String)tmp.get("email"));
                     hexs.add((String)tmp.get("color"));
+                    ids.add((String)tmp.get("id"));
                 }
             }
         } catch (JSONException j) {
@@ -74,12 +75,8 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
     public void onImageClick(int position) {
         fragmentCard = new FragmentCard();
 
-        Bundle bundle = new Bundle(5);
-        bundle.putString("name", names.get(position));
-        bundle.putString("phone", phones.get(position));
-        bundle.putString("email", emails.get(position));
-        bundle.putInt("img", searchImg);
-        bundle.putString("color", hexs.get(position));
+        Bundle bundle = new Bundle(1);
+        bundle.putString("id", ids.get(position));
         fragmentCard.setArguments(bundle);
 
         fragmentManager = getSupportFragmentManager();
@@ -90,7 +87,15 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
 
     @Override
     public void onBackPressed() {
-        if(fragmentCard != null) {
+        if(fragmentEdit != null) {
+            fragmentManager = getSupportFragmentManager();
+            transaction = fragmentManager.beginTransaction();
+            transaction.remove(fragmentEdit);
+            transaction.commit();
+            fragmentEdit.onDestroy();
+            fragmentEdit.onDetach();
+            fragmentEdit = null;
+        } else if(fragmentCard != null) {
             fragmentManager = getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.animator.slide_up, R.animator.slide_down);
