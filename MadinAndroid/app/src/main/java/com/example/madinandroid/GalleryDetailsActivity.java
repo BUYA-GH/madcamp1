@@ -18,7 +18,6 @@ import static com.example.madinandroid.MainActivity.books;
 
 public class GalleryDetailsActivity extends AppCompatActivity {
     private int searchImg;
-    //private ArrayList<String> imgs = new ArrayList<>();
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> hexs = new ArrayList<>();
 
