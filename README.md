@@ -9,5 +9,5 @@ at Mad Camp 2021 Winter semesters
 - Lee Hyewon
 
 ## 2. Project
-
-    
+![1](./image/1.png)
+Blueprint of our project.
