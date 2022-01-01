@@ -52,6 +52,7 @@ public class Fragment2 extends Fragment {
         phoneEdit = view.findViewById(R.id.phoneInput);
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        imgBtn.setBackgroundColor(Color.parseColor(parsingHex()));
 
         resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -73,7 +74,6 @@ public class Fragment2 extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MakeImoActivity.class);
                 resultLauncher.launch(intent);
-
             }
         });
 

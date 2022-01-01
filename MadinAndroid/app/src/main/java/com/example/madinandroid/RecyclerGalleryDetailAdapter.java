@@ -18,11 +18,14 @@ public class RecyclerGalleryDetailAdapter extends RecyclerView.Adapter<RecyclerG
     private ArrayList<String> names, hexs;
     private Context context;
 
-    public RecyclerGalleryDetailAdapter(Context ct, int resourceId, ArrayList<String> nm, ArrayList<String> hx ) {
+    private OnImageListener mOnImageListener;
+
+    public RecyclerGalleryDetailAdapter(Context ct, int resourceId, ArrayList<String> nm, ArrayList<String> hx, OnImageListener onImageListener ) {
         this.context = ct;
         this.searchImg = resourceId;
         this.names = new ArrayList<>(nm);
         this.hexs = new ArrayList<>(hx);
+        mOnImageListener = onImageListener;
     }
 
     @NonNull
@@ -30,7 +33,7 @@ public class RecyclerGalleryDetailAdapter extends RecyclerView.Adapter<RecyclerG
     public GalleryDetailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.gallery_detail_grid, parent, false);
-        return new GalleryDetailViewHolder(view);
+        return new GalleryDetailViewHolder(view, mOnImageListener);
     }
 
     @Override
@@ -45,14 +48,26 @@ public class RecyclerGalleryDetailAdapter extends RecyclerView.Adapter<RecyclerG
         return names.size();
     }
 
-    public class GalleryDetailViewHolder extends RecyclerView.ViewHolder {
+    public class GalleryDetailViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imgView;
         TextView textView;
+        OnImageListener onImageListener;
 
-        public GalleryDetailViewHolder(@NonNull View itemView) {
+        public GalleryDetailViewHolder(@NonNull View itemView, OnImageListener onImageListener) {
             super(itemView);
             imgView = itemView.findViewById(R.id.galleryDetailImageView);
             textView = itemView.findViewById(R.id.galleryDetailNameView);
+            this.onImageListener = onImageListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onImageListener.onImageClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnImageListener {
+        void onImageClick(int position);
     }
 }

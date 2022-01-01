@@ -23,9 +23,8 @@ public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImag
     private RecyclerView recyclerview;
     RecyclerGalleryAdapter recyclerAdapter;
 
-    private ArrayList<Integer> imgSrc = new ArrayList<>();
-    //private int[] imgSrc;
-    //private String[] ns, backColor;
+    private ArrayList<Integer> imgSrc;
+    private ArrayList<Integer> count;
 
     @Nullable
     @Override
@@ -42,20 +41,29 @@ public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImag
         super.onResume();
         Log.d("LifeCycleCheck", "I am in onResume in Fragment1");
 
+        imgSrc = new ArrayList<>();
+        count = new ArrayList<>();
+
         try {
             JSONObject tmp = null;
             for(int i = 0; i < books.length(); ++i) {
                 tmp = (JSONObject)books.get(i);
                 String img = (String)tmp.get("image");
-                int imgID = getActivity().getResources().getIdentifier(img, "drawable", getActivity().getPackageName());
 
-                if(imgSrc.indexOf(imgID) == -1) imgSrc.add(imgID);
+                int imgID = getActivity().getResources().getIdentifier(img, "drawable", getActivity().getPackageName());
+                int index = imgSrc.indexOf(imgID);
+                if(index == -1) {
+                    count.add(1);
+                    imgSrc.add(imgID);
+                } else {
+                    count.set(index, count.get(index)+1);
+                }
             }
         } catch (JSONException j) {
             j.printStackTrace();
         }
 
-        recyclerAdapter = new RecyclerGalleryAdapter(getActivity(), imgSrc, this);
+        recyclerAdapter = new RecyclerGalleryAdapter(getActivity(), imgSrc, count, this);
         recyclerview.setAdapter(recyclerAdapter);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 2));
     }
