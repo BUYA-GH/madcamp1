@@ -1,5 +1,6 @@
 package com.example.madinandroid;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +11,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -30,8 +35,8 @@ public class FragmentCard extends Fragment {
     private Button editBtn, deleteBtn;
 
     private FragmentManager fragmentManager;
-    private FragmentTransaction transaction;
-    static Fragment2 fragmentEdit;
+
+    private ActivityResultLauncher<Intent> resultLauncher;
 
     @Nullable
     @Override
@@ -71,6 +76,26 @@ public class FragmentCard extends Fragment {
         editBtn = view.findViewById(R.id.cardEditBtn);
         deleteBtn = view.findViewById(R.id.cardDeleteBtn);
 
+        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if(result.getResultCode() == Activity.RESULT_OK) {
+                    Intent intent = result.getData();
+                    name = intent.getStringExtra("name");
+                    phone = intent.getStringExtra("phone");
+                    email = intent.getStringExtra("email");
+                    image = intent.getIntExtra("img", R.drawable.img_cat);
+                    color = intent.getStringExtra("colors");
+
+                    nameText.setText(name);
+                    phoneText.setText(phone);
+                    emailText.setText(email);
+                    imageView.setImageResource(image);
+                    imageView.setBackgroundColor(Color.parseColor(color));
+                }
+            }
+        });
+
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,14 +106,32 @@ public class FragmentCard extends Fragment {
                 intent.putExtra("email", email);
                 intent.putExtra("img", image);
                 intent.putExtra("color", color);
-                startActivity(intent);
+
+                resultLauncher.launch(intent);
             }
         });
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                try {
+                    for(int i = 0; i < books.length(); ++i) {
+                        JSONObject obj = (JSONObject)books.get(i);
+                        if(id.equals((String)obj.get("id"))) {
+                            books.remove(i);
 
+                            break;
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String json = books.toString();
+                PreferenceManager.setString(getActivity(), "books", json);
+
+                fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(FragmentCard.this).commit();
             }
         });
 

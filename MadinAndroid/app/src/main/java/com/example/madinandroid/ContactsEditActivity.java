@@ -1,5 +1,6 @@
 package com.example.madinandroid;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,8 +34,8 @@ public class ContactsEditActivity extends AppCompatActivity {
     private String name, phone, email, color, id;
     private int imgSrc;
     private int[] colorValues = {255, 255, 255};
-
     private ActivityResultLauncher<Intent> resultLauncher;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class ContactsEditActivity extends AppCompatActivity {
 
         imgBtn.setImageResource(imgSrc);
         imgBtn.setBackgroundColor(Color.parseColor(color));
+        changeStringtoHexArray();
         inputBtn.setText("Edit your Friend!");
         nameEdit.setText(name);
         phoneEdit.setText(phone);
@@ -66,12 +68,15 @@ public class ContactsEditActivity extends AppCompatActivity {
 
             @Override
             public void onActivityResult(ActivityResult result) {
-                Intent intent = result.getData();
-                imgSrc = intent.getIntExtra("img", R.drawable.img_cat);
-                colorValues = intent.getIntArrayExtra("colors");
+                if(result.getResultCode() == RESULT_OK) {
+                    Intent intent = result.getData();
+                    imgSrc = intent.getIntExtra("img", R.drawable.img_cat);
+                    colorValues = intent.getIntArrayExtra("colors");
 
-                imgBtn.setImageResource(imgSrc);
-                imgBtn.setBackgroundColor(Color.parseColor(parsingHex()));
+                    imgBtn.setImageResource(imgSrc);
+                    imgBtn.setBackgroundColor(Color.parseColor(parsingHex()));
+                }
+
             }
         });
 
@@ -79,6 +84,8 @@ public class ContactsEditActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ContactsEditActivity.this, MakeImoActivity.class);
+                intent.putExtra("img", imgSrc);
+                intent.putExtra("color", colorValues);
                 resultLauncher.launch(intent);
             }
         });
@@ -113,6 +120,14 @@ public class ContactsEditActivity extends AppCompatActivity {
                 String json = books.toString();
                 PreferenceManager.setString(ContactsEditActivity.this, "books", json);
 
+                Intent intent = new Intent();
+                intent.putExtra("name", n);
+                intent.putExtra("phone", p);
+                intent.putExtra("email", e);
+                intent.putExtra("img", imgSrc);
+                intent.putExtra("colors", parsingHex());
+                setResult(Activity.RESULT_OK, intent);
+
                 Toast.makeText(ContactsEditActivity.this, "Edit Success!", Toast.LENGTH_LONG);
                 finish();
             }
@@ -132,5 +147,16 @@ public class ContactsEditActivity extends AppCompatActivity {
         if(colorValues[2] <= 15)  c = "0" + c;
 
         return "#" + a + b + c;
+    }
+
+    public void changeStringtoHexArray() {
+        String sub = color.substring(1,3);
+        colorValues[0] = Integer.parseInt(sub, 16);
+
+        sub = color.substring(3,5);
+        colorValues[1] = Integer.parseInt(sub, 16);
+
+        sub = color.substring(5,7);
+        colorValues[2] = Integer.parseInt(sub, 16);
     }
 }

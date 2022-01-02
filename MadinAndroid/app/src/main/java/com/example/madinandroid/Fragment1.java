@@ -31,7 +31,12 @@ public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImag
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d("LifeCycleCheck", "I am in onCreateView in Fragment1");
         View view = inflater.inflate(R.layout.fragment1, container, false);
+        jsonDataReset();
+
         recyclerview = (RecyclerView)view.findViewById(R.id.galleryRecyclerView);
+        recyclerAdapter = new RecyclerGalleryAdapter(getActivity(), imgSrc, count, this);
+        recyclerview.setAdapter(recyclerAdapter);
+        recyclerview.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 2));
 
         return view;
     }
@@ -40,7 +45,21 @@ public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImag
     public void onResume() {
         super.onResume();
         Log.d("LifeCycleCheck", "I am in onResume in Fragment1");
+        jsonDataReset();
 
+        recyclerAdapter.setItems(imgSrc, count);
+        recyclerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onImageClick(int position) {
+        int img = imgSrc.get(position);
+        Intent intent = new Intent(getActivity(), GalleryDetailsActivity.class);
+        intent.putExtra("img", getResources().getResourceEntryName(img));
+        startActivity(intent);
+    }
+
+    public void jsonDataReset() {
         imgSrc = new ArrayList<>();
         count = new ArrayList<>();
 
@@ -62,17 +81,5 @@ public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImag
         } catch (JSONException j) {
             j.printStackTrace();
         }
-
-        recyclerAdapter = new RecyclerGalleryAdapter(getActivity(), imgSrc, count, this);
-        recyclerview.setAdapter(recyclerAdapter);
-        recyclerview.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 2));
-    }
-
-    @Override
-    public void onImageClick(int position) {
-        int img = imgSrc.get(position);
-        Intent intent = new Intent(getActivity(), GalleryDetailsActivity.class);
-        intent.putExtra("img", getResources().getResourceEntryName(img));
-        startActivity(intent);
     }
 }

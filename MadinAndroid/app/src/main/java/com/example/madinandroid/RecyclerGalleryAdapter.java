@@ -43,6 +43,11 @@ public class RecyclerGalleryAdapter extends RecyclerView.Adapter<RecyclerGallery
     @Override
     public int getItemCount() { return imgSources.size(); }
 
+    public void setItems(ArrayList<Integer> imgSrc, ArrayList<Integer> cnt) {
+        imgSources = new ArrayList<>(imgSrc);
+        count = new ArrayList<>(cnt);
+    }
+
     public class GalleryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imgView;
         TextView textView;

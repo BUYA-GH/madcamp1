@@ -3,6 +3,7 @@ package com.example.madinandroid;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
@@ -19,17 +20,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
-import static com.example.madinandroid.FragmentCard.fragmentEdit;
 import static com.example.madinandroid.MainActivity.books;
 
 public class GalleryDetailsActivity extends AppCompatActivity implements RecyclerGalleryDetailAdapter.OnImageListener {
     private int searchImg;
-    private ArrayList<String> names = new ArrayList<>();
-    private ArrayList<String> phones = new ArrayList<>();
-    private ArrayList<String> emails = new ArrayList<>();
-    private ArrayList<String> hexs = new ArrayList<>();
-    private ArrayList<String> ids = new ArrayList<>();
+    private ArrayList<String> names;
+    private ArrayList<String> phones;
+    private ArrayList<String> emails;
+    private ArrayList<String> hexs;
+    private ArrayList<String> ids;
 
     private RecyclerView recyclerDetailGallery;
     private RecyclerGalleryDetailAdapter recyclerAdapter;
@@ -47,23 +48,7 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
         String filename = intent.getExtras().getString("img");
         searchImg = getResources().getIdentifier(filename, "drawable", getPackageName());
 
-        try {
-            JSONObject tmp = null;
-            for(int i = 0; i < books.length(); ++i) {
-                tmp = (JSONObject)books.get(i);
-                String imgSrc = (String)tmp.get("image");
-                if(searchImg == getResources().getIdentifier(imgSrc, "drawable", getPackageName())) {
-                    Log.d("sameCheck", "Hi!");
-                    names.add((String)tmp.get("name"));
-                    phones.add((String)tmp.get("phone"));
-                    emails.add((String)tmp.get("email"));
-                    hexs.add((String)tmp.get("color"));
-                    ids.add((String)tmp.get("id"));
-                }
-            }
-        } catch (JSONException j) {
-            j.printStackTrace();
-        }
+        jsonDataReset();
 
         recyclerDetailGallery = (RecyclerView)findViewById(R.id.galleryDetailRecyclerView);
         recyclerAdapter = new RecyclerGalleryDetailAdapter(this, searchImg, names, hexs, this);
@@ -87,15 +72,7 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
 
     @Override
     public void onBackPressed() {
-        if(fragmentEdit != null) {
-            fragmentManager = getSupportFragmentManager();
-            transaction = fragmentManager.beginTransaction();
-            transaction.remove(fragmentEdit);
-            transaction.commit();
-            fragmentEdit.onDestroy();
-            fragmentEdit.onDetach();
-            fragmentEdit = null;
-        } else if(fragmentCard != null) {
+        if(fragmentCard != null) {
             fragmentManager = getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.animator.slide_up, R.animator.slide_down);
@@ -104,8 +81,40 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
             fragmentCard.onDestroy();
             fragmentCard.onDetach();
             fragmentCard = null;
+
+            jsonDataReset();
+            recyclerAdapter.setItems(searchImg, names, hexs);
+            recyclerAdapter.notifyDataSetChanged();
+
         } else {
             super.onBackPressed();
+        }
+    }
+
+    public void jsonDataReset() {
+        names = new ArrayList<>();
+        phones = new ArrayList<>();
+        emails = new ArrayList<>();
+        hexs = new ArrayList<>();
+        ids = new ArrayList<>();
+
+        Log.d("!!!!!!!!!!!!!!!!", "??????????????????????");
+        try {
+            JSONObject tmp = null;
+            for(int i = 0; i < books.length(); ++i) {
+                tmp = (JSONObject)books.get(i);
+                String imgSrc = (String)tmp.get("image");
+                if(searchImg == getResources().getIdentifier(imgSrc, "drawable", getPackageName())) {
+                    Log.d("sameCheck", "Hi!");
+                    names.add((String)tmp.get("name"));
+                    phones.add((String)tmp.get("phone"));
+                    emails.add((String)tmp.get("email"));
+                    hexs.add((String)tmp.get("color"));
+                    ids.add((String)tmp.get("id"));
+                }
+            }
+        } catch (JSONException j) {
+            j.printStackTrace();
         }
     }
 }

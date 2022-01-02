@@ -48,6 +48,12 @@ public class RecyclerGalleryDetailAdapter extends RecyclerView.Adapter<RecyclerG
         return names.size();
     }
 
+    public void setItems(int resourceId, ArrayList<String> nm, ArrayList<String> hx) {
+        this.searchImg = resourceId;
+        this.names = new ArrayList<>(nm);
+        this.hexs = new ArrayList<>(hx);
+    }
+
     public class GalleryDetailViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imgView;
         TextView textView;

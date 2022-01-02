@@ -78,6 +78,8 @@ public class Fragment2 extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MakeImoActivity.class);
+                intent.putExtra("img", imgSrc);
+                intent.putExtra("color", colorValues);
                 resultLauncher.launch(intent);
             }
         });

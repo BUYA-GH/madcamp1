@@ -35,9 +35,14 @@ public class MakeImoActivity extends AppCompatActivity implements RecyclerImoAda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.make_imo);
 
+        Intent intent = getIntent();
+        myImage = intent.getExtras().getInt("img");
+        colorValues = intent.getExtras().getIntArray("color");
+
         imageview = (ImageView)findViewById(R.id.makeImoImageView);
         selBtn = (Button)findViewById(R.id.imoSelectBtn);
 
+        imageview.setImageResource(myImage);
         imageview.setBackgroundColor(Color.parseColor(parsingHex()));
 
         recyclerEmoView = (RecyclerView)findViewById(R.id.imoRecyclerView);
