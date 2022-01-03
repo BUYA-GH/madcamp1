@@ -36,6 +36,7 @@ public class RecyclerBarAdapter extends RecyclerView.Adapter<RecyclerBarAdapter.
     public void onBindViewHolder(@NonNull RecyclerBarAdapter.BarViewHolder holder, int position) {
         holder.colorNameTextView.setText(colors[position]);
         holder.colorValueTextView.setText(Integer.toString(colorValue[position]));
+        holder.colorSeekBar.setProgress(colorValue[position]);
     }
 
     @Override
@@ -46,12 +47,14 @@ public class RecyclerBarAdapter extends RecyclerView.Adapter<RecyclerBarAdapter.
     public class BarViewHolder extends RecyclerView.ViewHolder implements SeekBar.OnSeekBarChangeListener {
 
         TextView colorNameTextView, colorValueTextView;
+        SeekBar colorSeekBar;
         OnSeekBarChangeListener onSeekBarChangeListener;
 
         public BarViewHolder(@NonNull View itemView, OnSeekBarChangeListener onSeekBarChangeListener) {
             super(itemView);
             colorNameTextView = itemView.findViewById(R.id.barLabel);
             colorValueTextView = itemView.findViewById(R.id.barProgress);
+            colorSeekBar = itemView.findViewById(R.id.seekbar);
             this.onSeekBarChangeListener = onSeekBarChangeListener;
 
             SeekBar seekBar = (SeekBar)itemView.findViewById(R.id.seekbar);

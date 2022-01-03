@@ -3,7 +3,9 @@ package com.example.madinandroid;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
+
 import android.os.Bundle;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,27 +21,34 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
 
     static JSONArray books;
+    static int nowId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String json = PreferenceManager.getString(this, "books");
         try{
-            InputStream is = getAssets().open("Books.json");
-            int fileSize = is.available();
+            if(json.equals("")) {
+                InputStream is = getAssets().open("Books.json");
+                int fileSize = is.available();
 
-            byte[] buffer = new byte[fileSize];
-            is.read(buffer);
-            is.close();
-            String json = new String(buffer, "UTF-8");
-
-            JSONObject jsonOb = new JSONObject(json);
-            books = jsonOb.getJSONArray("Books");
+                byte[] buffer = new byte[fileSize];
+                is.read(buffer);
+                is.close();
+                json = new String(buffer, "UTF-8");
+            }
+            books = new JSONArray(json);
+            JSONObject tmp = (JSONObject)books.get(books.length() - 1);
+            String ids = (String)tmp.get("id");
+            nowId = Integer.parseInt(ids);
 
         } catch(IOException | JSONException i) {
             i.printStackTrace();
         }
+        Log.d("CheckLastID", Integer.toString(nowId));
+
         tabLayout = (TabLayout)findViewById(R.id.tabs);
 
         viewPager = (ViewPager2)findViewById(R.id.viewPager);
@@ -61,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) { }
         });
-
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

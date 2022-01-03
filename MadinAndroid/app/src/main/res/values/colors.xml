@@ -8,4 +8,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dark_gray">#222222</color>
     <color name="light_gray">#eeeeee</color>
+    <color name="safe">#198754</color>
+    <color name="danger">#DC3545</color>
 </resources>

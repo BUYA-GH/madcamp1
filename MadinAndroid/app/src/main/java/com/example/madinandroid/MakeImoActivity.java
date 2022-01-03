@@ -23,7 +23,6 @@ public class MakeImoActivity extends AppCompatActivity implements RecyclerImoAda
 
     private Button selBtn;
 
-
     private int images[] = {R.drawable.img_cat, R.drawable.img_clown, R.drawable.img_devil,
             R.drawable.img_dog, R.drawable.img_heart, R.drawable.img_money, R.drawable.img_party, R.drawable.img_poop};
     private int myImage = R.drawable.img_cat;
@@ -36,9 +35,14 @@ public class MakeImoActivity extends AppCompatActivity implements RecyclerImoAda
         super.onCreate(savedInstanceState);
         setContentView(R.layout.make_imo);
 
+        Intent intent = getIntent();
+        myImage = intent.getExtras().getInt("img");
+        colorValues = intent.getExtras().getIntArray("color");
+
         imageview = (ImageView)findViewById(R.id.makeImoImageView);
         selBtn = (Button)findViewById(R.id.imoSelectBtn);
 
+        imageview.setImageResource(myImage);
         imageview.setBackgroundColor(Color.parseColor(parsingHex()));
 
         recyclerEmoView = (RecyclerView)findViewById(R.id.imoRecyclerView);
