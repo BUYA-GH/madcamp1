@@ -50,8 +50,8 @@ public class ContactsEditActivity extends AppCompatActivity {
         color = intent.getExtras().getString("color");
         imgSrc = intent.getExtras().getInt("img");
 
-        imgBtn = findViewById(R.id.makeImoge);
-        inputBtn = findViewById(R.id.inputBtn);
+        imgBtn = findViewById(R.id.emoji_button);
+        inputBtn = findViewById(R.id.addBtn);
         nameEdit = findViewById(R.id.nameInput);
         phoneEdit = findViewById(R.id.phoneInput);
         emailEdit = findViewById(R.id.emailInput);

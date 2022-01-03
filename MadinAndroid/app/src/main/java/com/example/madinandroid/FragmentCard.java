@@ -119,7 +119,6 @@ public class FragmentCard extends Fragment {
                         JSONObject obj = (JSONObject)books.get(i);
                         if(id.equals((String)obj.get("id"))) {
                             books.remove(i);
-
                             break;
                         }
                     }

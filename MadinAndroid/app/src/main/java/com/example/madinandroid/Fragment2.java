@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -27,15 +28,20 @@ import static android.app.Activity.RESULT_OK;
 import static com.example.madinandroid.MainActivity.books;
 import static com.example.madinandroid.MainActivity.nowId;
 
+import soup.neumorphism.NeumorphCardView;
+
 public class Fragment2 extends Fragment {
-    private ImageButton imgBtn;
+    private NeumorphCardView emojiBack;
+    private ImageView emojiImg;
+    private Button emojiButton;
+
     private Button inputBtn;
 
     private EditText nameEdit;
     private EditText phoneEdit;
     private EditText emailEdit;
-    private int imgSrc = R.drawable.img_cat;
-    private int[] colorValues = {255, 255, 255};
+    private int imgSrc = R.drawable.img_party;
+    private int[] colorValues = {250, 250, 250};
 
     private ActivityResultLauncher<Intent> resultLauncher;
 
@@ -48,8 +54,11 @@ public class Fragment2 extends Fragment {
         Log.d("LifeCycleCheck", "I am in onCreateView in Fragment2");
         View view = inflater.inflate(R.layout.fragment2, container, false);
 
-        imgBtn = view.findViewById(R.id.makeImoge);
-        inputBtn = view.findViewById(R.id.inputBtn);
+        emojiBack = view.findViewById(R.id.emoji_back);
+        emojiImg = view.findViewById(R.id.emoji_img);
+        emojiButton = view.findViewById(R.id.emoji_button);
+
+        inputBtn = view.findViewById(R.id.addBtn);
 
         nameEdit = view.findViewById(R.id.nameInput);
         emailEdit = view.findViewById(R.id.emailInput);
@@ -57,7 +66,7 @@ public class Fragment2 extends Fragment {
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        imgBtn.setBackgroundColor(Color.parseColor(parsingHex()));
+        emojiBack.setBackgroundColor(Color.parseColor(parsingHex()));
 
         resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -65,16 +74,16 @@ public class Fragment2 extends Fragment {
                 if(result.getResultCode() == RESULT_OK) {
                     Log.d("ActivityBack", "Back to Activity Successfully");
                     Intent intent = result.getData();
-                    imgSrc = intent.getIntExtra("img", R.drawable.img_cat);
+                    imgSrc = intent.getIntExtra("img", R.drawable.img_party);
                     colorValues = intent.getIntArrayExtra("colors");
 
-                    imgBtn.setImageResource(imgSrc);
-                    imgBtn.setBackgroundColor(Color.parseColor(parsingHex()));
+                    emojiImg.setImageResource(imgSrc);
+                    emojiBack.setBackgroundColor(Color.parseColor(parsingHex()));
                 }
             }
         });
 
-        imgBtn.setOnClickListener(new View.OnClickListener() {
+        emojiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MakeImoActivity.class);
@@ -103,6 +112,7 @@ public class Fragment2 extends Fragment {
                     newOb.put("email", e);
                     newOb.put("image", getResources().getResourceEntryName(imgSrc));
                     newOb.put("color", parsingHex());
+                    newOb.put("star",false);
 
                     books.put(newOb);
                 } catch(JSONException j) {
@@ -117,6 +127,7 @@ public class Fragment2 extends Fragment {
         return view;
     }
 
+    // convert string to hexcode
     public String parsingHex() {
         String a, b, c;
 

@@ -14,14 +14,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import soup.neumorphism.NeumorphCardView;
+
 public class MakeImoActivity extends AppCompatActivity implements RecyclerImoAdapter.OnImageListener, RecyclerBarAdapter.OnSeekBarChangeListener {
 
     private ImageView imageview;
+    private NeumorphCardView backview;
+
     private RecyclerView recyclerEmoView, recyclerBarView;
     private RecyclerImoAdapter recyclerEmoAdapter;
     private RecyclerBarAdapter recyclerBarAdapter;
 
-    private Button selBtn;
+    private Button yesBtn,noBtn;
 
     private int images[] = {R.drawable.img_cat, R.drawable.img_clown, R.drawable.img_devil,
             R.drawable.img_dog, R.drawable.img_heart, R.drawable.img_money, R.drawable.img_party, R.drawable.img_poop};
@@ -39,11 +43,13 @@ public class MakeImoActivity extends AppCompatActivity implements RecyclerImoAda
         myImage = intent.getExtras().getInt("img");
         colorValues = intent.getExtras().getIntArray("color");
 
-        imageview = (ImageView)findViewById(R.id.makeImoImageView);
-        selBtn = (Button)findViewById(R.id.imoSelectBtn);
+        imageview = (ImageView)findViewById(R.id.emoImage);
+        backview = (NeumorphCardView)findViewById(R.id.emoImage_back);
+        yesBtn = (Button)findViewById(R.id.yesBtn);
+        noBtn = (Button)findViewById(R.id.noBtn);
 
         imageview.setImageResource(myImage);
-        imageview.setBackgroundColor(Color.parseColor(parsingHex()));
+        backview.setBackgroundColor(Color.parseColor(parsingHex()));
 
         recyclerEmoView = (RecyclerView)findViewById(R.id.imoRecyclerView);
         recyclerEmoAdapter = new RecyclerImoAdapter(this, images, this);
@@ -57,7 +63,7 @@ public class MakeImoActivity extends AppCompatActivity implements RecyclerImoAda
         recyclerBarView.setAdapter(recyclerBarAdapter);
         recyclerBarView.setLayoutManager(new LinearLayoutManager(this));
 
-        selBtn.setOnClickListener(new View.OnClickListener() {
+        yesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -65,6 +71,12 @@ public class MakeImoActivity extends AppCompatActivity implements RecyclerImoAda
                 intent.putExtra("colors", colorValues);
                 setResult(Activity.RESULT_OK, intent);
 
+                finish();
+            }
+        });
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 finish();
             }
         });
@@ -89,7 +101,7 @@ public class MakeImoActivity extends AppCompatActivity implements RecyclerImoAda
     @Override
     public void onSeekBarStopTrackingTouch(int position, SeekBar seekBar) {
         colorValues[position] = seekBar.getProgress();
-        imageview.setBackgroundColor(Color.parseColor(parsingHex()));
+        backview.setBackgroundColor(Color.parseColor(parsingHex()));
         recyclerBarAdapter.notifyDataSetChanged();
     }
 
