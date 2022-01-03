@@ -10,7 +10,16 @@
         <item name="colorSecondaryVariant">@color/themes_400</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/background</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+
         <!-- Customize your theme here. -->
+    </style>
+    <style name="Button.Safe" parent="ThemeOverlay.AppCompat">
+        <item name="colorPrimary">@color/safe</item>
+    </style>
+    <style name="Button.Danger" parent="ThemeOverlay.AppCompat">
+        <item name="colorPrimary">@color/danger</item>
     </style>
 </resources>
