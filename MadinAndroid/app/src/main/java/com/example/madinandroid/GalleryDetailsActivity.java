@@ -98,7 +98,6 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
         hexs = new ArrayList<>();
         ids = new ArrayList<>();
 
-        Log.d("!!!!!!!!!!!!!!!!", "??????????????????????");
         try {
             JSONObject tmp = null;
             for(int i = 0; i < books.length(); ++i) {

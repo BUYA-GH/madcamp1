@@ -27,7 +27,6 @@ public class PagerAdapter extends FragmentStateAdapter {
                 return new Fragment2();
         }
         return new Fragment0();
-
     }
 
     @Override
