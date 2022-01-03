@@ -9,85 +9,125 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
 
-    <LinearLayout
-        android:id="@+id/contactBg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/dark_shadow">
-
-        <Button
-            android:id="@+id/contactButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
-    </LinearLayout>
-
-
-
-    <soup.neumorphism.NeumorphCardView
-        android:id="@+id/contactFg"
-        android:layout_width="match_parent"
-
-        android:layout_height="wrap_content"
-        android:paddingTop="0dp"
-
-        app:layout_constraintTop_toTopOf="parent"
-        app:neumorph_backgroundColor="@color/white"
-        app:neumorph_shadowColorDark="@color/dark_shadow"
-        app:neumorph_shadowColorLight="@color/light_shadow"
-        app:neumorph_shadowElevation="5dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:orientation="vertical"
+        android:layout_gravity="top|left"
+        android:layout_marginLeft="8dp">
+        <soup.neumorphism.NeumorphButton
+            app:neumorph_shapeType="basin"
+            android:id="@+id/contactButton_call"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:neumorph_shadowElevation="4dp"
+            app:neumorph_shadowColorDark="@color/dark_shadow"
+            app:neumorph_shadowColorLight="@color/light_shadow"
+            app:neumorph_backgroundColor="@color/background"/>
 
-            <ImageView
-                android:id="@+id/contactImageView"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:padding="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:src="@drawable/icon_call" />
+    </FrameLayout>
 
-            <TextView
-                android:id="@+id/contactNameView"
-                style="@style/main_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+    <FrameLayout
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:orientation="vertical"
+        android:layout_gravity="bottom|left"
+        android:layout_marginLeft="8dp">
+        <soup.neumorphism.NeumorphButton
+            app:neumorph_shapeType="basin"
+            android:id="@+id/contactButton_insta"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:neumorph_shadowElevation="4dp"
+            app:neumorph_shadowColorDark="@color/dark_shadow"
+            app:neumorph_shadowColorLight="@color/light_shadow"
+            app:neumorph_backgroundColor="@color/background"/>
 
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="name"
-                app:layout_constraintBottom_toTopOf="@id/contactPhoneView"
-                app:layout_constraintStart_toEndOf="@+id/contactImageView"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:src="@drawable/icon_insta" />
+    </FrameLayout>
 
-            <TextView
-                android:id="@+id/contactPhoneView"
-                style="@style/sub_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
-                android:layout_marginTop="10dp"
-                android:text="phone"
-                app:layout_constraintBottom_toTopOf="@id/contactEmailView"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/contactNameView"
-                app:layout_constraintTop_toBottomOf="@id/contactNameView" />
 
-            <TextView
-                android:id="@+id/contactEmailView"
-                style="@style/sub_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contactFg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+        <soup.neumorphism.NeumorphCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-                android:layout_marginTop="5dp"
-                android:text="email"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/contactPhoneView"
-                app:layout_constraintTop_toBottomOf="@id/contactPhoneView" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </soup.neumorphism.NeumorphCardView>
+            app:neumorph_backgroundColor="@color/white"
+            app:neumorph_shadowColorDark="@color/dark_shadow"
+            app:neumorph_shadowColorLight="@color/light_shadow"
+            app:neumorph_shadowElevation="5dp">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/contactImageView"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:padding="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/contactNameView"
+                    style="@style/main_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="name"
+                    app:layout_constraintBottom_toTopOf="@id/contactPhoneView"
+                    app:layout_constraintStart_toEndOf="@+id/contactImageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/contactPhoneView"
+                    style="@style/sub_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    android:text="phone"
+                    app:layout_constraintBottom_toTopOf="@id/contactEmailView"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/contactNameView"
+                    app:layout_constraintTop_toBottomOf="@id/contactNameView" />
+
+                <TextView
+                    android:id="@+id/contactEmailView"
+                    style="@style/sub_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="5dp"
+                    android:text="email"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/contactPhoneView"
+                    app:layout_constraintTop_toBottomOf="@id/contactPhoneView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </soup.neumorphism.NeumorphCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </FrameLayout>

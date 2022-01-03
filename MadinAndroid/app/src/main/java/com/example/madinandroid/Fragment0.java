@@ -31,14 +31,6 @@ public class Fragment0 extends Fragment {
     EditText contactSearch;
     RecyclerContactAdapter recyclerAdapter;
 
-    private JSONArray array;
-
-    private String[] ns;
-    private String[] ps;
-    private String[] es;
-    private int[] imgSrc;
-    private String[] backgroundColor;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,6 +65,7 @@ public class Fragment0 extends Fragment {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 recyclerAdapter.getFilter().filter(charSequence);
+                Log.d("ontext",charSequence.toString());
             }
 
             @Override
