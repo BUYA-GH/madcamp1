@@ -60,7 +60,7 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
             JSONObject tmp = (JSONObject)jsonarrayFiltered.get(position);
             holder.nameText.setText((String)tmp.get("name"));
             holder.phoneText.setText((String)tmp.get("phone"));
-            holder.emailText.setText("@"+(String)tmp.get("email"));
+            holder.emailText.setText((String)tmp.get("email"));
 
             String img_name = (String)tmp.get("image");
             int img_int = context.getResources().getIdentifier(img_name, "drawable", context.getPackageName());

@@ -3,7 +3,7 @@
     "id": "1",
     "name": "Kim Gana",
     "phone": "010-1234-5678",
-    "email": "@daumchoigo",
+    "email": "daumchoigo",
     "image": "img_cat",
     "color": "#B213A3"
   },
@@ -11,7 +11,7 @@
     "id": "2",
     "name": "Lee Dala",
     "phone": "010-0987-6543",
-    "email": "@naverBest",
+    "email": "naverBest",
     "image": "img_dog",
     "color": "#2CAD62"
   },
@@ -19,7 +19,7 @@
     "id": "3",
     "name": "Park Maba",
     "phone": "010-0468-4821",
-    "email": "@zmffkfk12",
+    "email": "zmffkfk12",
     "image": "img_dog",
     "color": "#D678A7"
   },
@@ -27,7 +27,7 @@
     "id": "4",
     "name": "Choi Saa",
     "phone": "010-9753-1573",
-    "email": "@tkdktkdk11",
+    "email": "tkdktkdk11",
     "image": "img_dog",
     "color": "#C3D4ED"
   },
@@ -35,7 +35,7 @@
     "id": "5",
     "name": "Jung jacha",
     "phone": "010-4259-1385",
-    "email": "@RaiRaiChaChaCHa",
+    "email": "RaiRaiChaChaCHa",
     "image": "img_cat",
     "color": "#814DA5"
   }
