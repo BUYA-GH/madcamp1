@@ -1,16 +1,44 @@
 { "Books" : [
   {
-    "name": "Kim Gana",
+    "name": "Gana",
     "phone": "010-1234-5678",
-    "email": "naverchoigo@daum.net",
+    "email": "@gana_choco",
     "image": "img_cat",
-    "color": "#FF0000"
+    "color": "#F31111"
   },
   {
-    "name": "Lee Dala",
+    "name": "Dala",
     "phone": "010-0987-6543",
-    "email": "daumbest@naver.com",
+    "email": "@dala_dal",
     "image": "img_dog",
-    "color": "#00FF00"
+    "color": "#10FF30"
+  },
+  {
+    "name": "Hyewon",
+    "phone": "010-9021-0167",
+    "email": "@hye1_real",
+    "image": "img_clown",
+    "color": "#FFFFFF"
+  },
+  {
+    "name": "HyeSome",
+    "phone": "010-0987-6543",
+    "email": "@hye1_some",
+    "image": "img_party",
+    "color": "#238209"
+  },
+  {
+    "name": "Lee",
+    "phone": "010-0987-6543",
+    "email": "@lee_li",
+    "image": "img_poop",
+    "color": "#3a9b90"
+  },
+  {
+    "name": "HeyHye",
+    "phone": "010-0987-6543",
+    "email": "@hey_yo",
+    "image": "img_money",
+    "color": "#2300df"
   }
 ]}

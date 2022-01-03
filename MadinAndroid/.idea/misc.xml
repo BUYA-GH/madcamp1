@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2328125" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/drawable/bg_contactsearch.xml" value="0.1390625" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/drawable/icon_tint.xml" value="0.28615384615384615" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/font/raleway.xml" value="0.246875" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/font/raleway_bold.xml" value="0.246875" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/font/raleway_extrabold.xml" value="0.246875" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/font/raleway_medium.xml" value="0.246875" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/font/raleway_regular.xml" value="0.246875" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/bar_row.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/contact_row.xml" value="0.536" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/fragment0.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/imo_row.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/make_imo.xml" value="0.21666666666666667" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
