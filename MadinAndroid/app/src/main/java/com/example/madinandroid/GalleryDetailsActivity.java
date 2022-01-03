@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -15,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,7 +41,15 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
 
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
+
     private FragmentCard fragmentCard;
+    private FragmentEditUser fragmentEdit;
+    // private FragmentEditEmo fragmentEmo;
+    // private FragmentEditColor fragmentColor;
+
+    private ViewPager2 viewPager2;
+    private CardPagerAdapter cardPagerAdapter;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,41 +66,50 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
         recyclerAdapter = new RecyclerGalleryDetailAdapter(this, searchImg, names, hexs, this);
         recyclerDetailGallery.setAdapter(recyclerAdapter);
         recyclerDetailGallery.setLayoutManager(new GridLayoutManager(this, 2));
+
+        fragmentManager = getSupportFragmentManager();
     }
 
     @Override
     public void onImageClick(int position) {
-        fragmentCard = new FragmentCard();
+        viewPager2 = findViewById(R.id.editViewPager2);
+        viewPager2.setElevation(1);
+        cardPagerAdapter = new CardPagerAdapter(getSupportFragmentManager(), getLifecycle());
+        cardPagerAdapter.setInfoOfUser(names.get(position), phones.get(position), emails.get(position), searchImg,
+                hexs.get(position), ids.get(position));
 
-        Bundle bundle = new Bundle(1);
-        bundle.putString("id", ids.get(position));
-        fragmentCard.setArguments(bundle);
+        viewPager2.setAdapter(cardPagerAdapter);
+        viewPager2.setOffscreenPageLimit(3);
 
-        fragmentManager = getSupportFragmentManager();
-        transaction = fragmentManager.beginTransaction();
-        transaction.setCustomAnimations(R.animator.slide_up, R.animator.slide_down);
-        transaction.replace(R.id.cardFrameLayout, fragmentCard).commit();
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+                if(state == ViewPager2.SCROLL_STATE_SETTLING) {
+                    cardPagerAdapter.getAllSettingFromFragment();
+                }
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
-        if(fragmentCard != null) {
-            fragmentManager = getSupportFragmentManager();
-            transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(R.animator.slide_up, R.animator.slide_down);
-            transaction.remove(fragmentCard);
-            transaction.commit();
-            fragmentCard.onDestroy();
-            fragmentCard.onDetach();
-            fragmentCard = null;
-
-            jsonDataReset();
-            recyclerAdapter.setItems(searchImg, names, hexs);
-            recyclerAdapter.notifyDataSetChanged();
-
+        if(cardPagerAdapter != null) {
+            destroyViewPager();
         } else {
             super.onBackPressed();
         }
+
+    }
+
+    public void destroyViewPager() {
+        cardPagerAdapter.removeAllFragment();
+        cardPagerAdapter = null;
+        viewPager2.setElevation(-1);
+
+        jsonDataReset();
+        recyclerAdapter.setItems(searchImg, names, hexs);
+        recyclerAdapter.notifyDataSetChanged();
     }
 
     public void jsonDataReset() {
