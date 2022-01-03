@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class FragmentCard extends Fragment {
     private ImageView cardImageView;
     private TextView cardNameText, cardPhoneText, cardEmailText;
     private Button cardEditBtn, cardDeleteBtn;
+    private ImageButton exitBtn;
 
     @Nullable
     @Override
@@ -64,6 +66,8 @@ public class FragmentCard extends Fragment {
 
                 String json = books.toString();
                 PreferenceManager.setString(getActivity(), "books", json);
+
+                ((GalleryDetailsActivity)getActivity()).destroyViewPager();
             }
         });
 
@@ -85,8 +89,18 @@ public class FragmentCard extends Fragment {
 
                 String json = books.toString();
                 PreferenceManager.setString(getActivity(), "books", json);
+
+                ((GalleryDetailsActivity)getActivity()).destroyViewPager();
             }
         });
+
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((GalleryDetailsActivity)getActivity()).destroyViewPager();
+            }
+        });
+
         return view;
     }
 
@@ -106,6 +120,7 @@ public class FragmentCard extends Fragment {
         cardEmailText = view.findViewById(R.id.cardInstaInfo);
         cardEditBtn = view.findViewById(R.id.cardEditBtn);
         cardDeleteBtn = view.findViewById(R.id.cardDeleteBtn);
+        exitBtn = view.findViewById(R.id.cardExitBtn);
     }
 
     public void setSettingValue() {

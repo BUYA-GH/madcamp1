@@ -92,6 +92,26 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        if(cardPagerAdapter != null) {
+            destroyViewPager();
+        } else {
+            super.onBackPressed();
+        }
+
+    }
+
+    public void destroyViewPager() {
+        cardPagerAdapter.removeAllFragment();
+        cardPagerAdapter = null;
+        viewPager2.setElevation(-1);
+
+        jsonDataReset();
+        recyclerAdapter.setItems(searchImg, names, hexs);
+        recyclerAdapter.notifyDataSetChanged();
+    }
+
     public void jsonDataReset() {
         names = new ArrayList<>();
         phones = new ArrayList<>();

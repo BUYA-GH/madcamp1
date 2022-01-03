@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
@@ -22,6 +23,7 @@ public class FragmentColor extends Fragment implements RecyclerSmallBarAdapter.O
     private int image;
 
     private ImageView imgColorView;
+    private ImageButton exitBtn;
     private RecyclerView imgColorRecyclerView;
     private RecyclerSmallBarAdapter recyclerSmallBarAdapter;
 
@@ -32,12 +34,20 @@ public class FragmentColor extends Fragment implements RecyclerSmallBarAdapter.O
         setViewByID(view);
         setSettingValue();
 
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((GalleryDetailsActivity)getActivity()).destroyViewPager();
+            }
+        });
+
         return view;
     }
 
     public void setByBundle(Bundle bundle) {
         color = bundle.getString("color");
         image = bundle.getInt("image");
+        changeStringtoHexArray();
     }
 
     public void setViewByID(View view) {
@@ -47,6 +57,7 @@ public class FragmentColor extends Fragment implements RecyclerSmallBarAdapter.O
         recyclerSmallBarAdapter = new RecyclerSmallBarAdapter(getActivity(), colors, colorValues, this);
         imgColorRecyclerView.setAdapter(recyclerSmallBarAdapter);
         imgColorRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        exitBtn = view.findViewById(R.id.cardExitBtn);
     }
 
     public void setSettingValue() {
@@ -83,6 +94,17 @@ public class FragmentColor extends Fragment implements RecyclerSmallBarAdapter.O
         if(colorValues[2] <= 15)  c = "0" + c;
 
         return "#" + a + b + c;
+    }
+
+    public void changeStringtoHexArray() {
+        String sub = color.substring(1,3);
+        colorValues[0] = Integer.parseInt(sub, 16);
+
+        sub = color.substring(3,5);
+        colorValues[1] = Integer.parseInt(sub, 16);
+
+        sub = color.substring(5,7);
+        colorValues[2] = Integer.parseInt(sub, 16);
     }
 
     public Bundle getSetValue() {

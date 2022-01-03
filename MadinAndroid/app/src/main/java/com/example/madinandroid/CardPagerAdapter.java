@@ -24,7 +24,7 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         fragments.add(new FragmentEditUser());
         fragments.add(new FragmentEmo());
         fragments.add(new FragmentColor());
-    }
+}
 
     public void setInfoOfUser(String name, String phone, String email, int image, String color, String id) {
         this.name = name;
@@ -113,4 +113,28 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         updateInfoToFragments();
     }
 
+    public void removeAllFragment() {
+        FragmentColor fragmentColor = (FragmentColor)fragments.get(3);
+        fragmentColor.onDestroy();
+        fragmentColor.onDetach();
+        fragments.remove(3);
+
+        FragmentEmo fragmentEmo = (FragmentEmo)fragments.get(2);
+        fragmentEmo.onDestroy();
+        fragmentEmo.onDetach();
+        fragments.remove(2);
+
+        FragmentEditUser fragmentEditUser = (FragmentEditUser)fragments.get(1);
+        fragmentEditUser.onDestroy();
+        fragmentEditUser.onDetach();
+        fragments.remove(1);
+
+
+        FragmentCard fragmentCard = (FragmentCard)fragments.get(0);
+        fragmentCard.onDestroy();
+        fragmentCard.onDetach();
+        fragments.remove(0);
+
+        notifyDataSetChanged();
+    }
 }

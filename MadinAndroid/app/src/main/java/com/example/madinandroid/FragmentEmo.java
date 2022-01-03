@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ public class FragmentEmo extends Fragment implements RecyclerSmallImoAdapter.OnI
     private int image;
 
     private ImageView imgEmoView;
+    private ImageButton exitBtn;
     private RecyclerView imgEmoRecyclerView;
     private RecyclerSmallImoAdapter recyclerSmallImoAdapter;
 
@@ -26,6 +28,13 @@ public class FragmentEmo extends Fragment implements RecyclerSmallImoAdapter.OnI
         View view = inflater.inflate(R.layout.fragment_card_emo, container, false);
         setViewByID(view);
         setSettingValue();
+
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((GalleryDetailsActivity)getActivity()).destroyViewPager();
+            }
+        });
 
         return view;
     }
@@ -36,6 +45,7 @@ public class FragmentEmo extends Fragment implements RecyclerSmallImoAdapter.OnI
     }
 
     public void setViewByID(View view) {
+        exitBtn = view.findViewById(R.id.cardExitBtn);
         imgEmoView = view.findViewById(R.id.cardEmoImageView);
         imgEmoRecyclerView = view.findViewById(R.id.cardEmoRecyclerView);
         recyclerSmallImoAdapter = new RecyclerSmallImoAdapter(getActivity(), images, this);

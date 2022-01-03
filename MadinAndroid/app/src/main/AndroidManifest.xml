@@ -19,6 +19,5 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".MakeImoActivity"/>
         <activity android:name=".GalleryDetailsActivity"/>
-        <activity android:name=".ContactsEditActivity"/>
     </application>
 </manifest>

@@ -23,12 +23,20 @@ public class FragmentEditUser extends Fragment {
     private EditText nameEditText;
     private EditText phoneEditText;
     private EditText emailEditText;
+    private ImageButton exitBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_user, container, false);
         setViewByID(view);
         setSettingValue();
+
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((GalleryDetailsActivity)getActivity()).destroyViewPager();
+            }
+        });
 
         return view;
     }
@@ -47,6 +55,7 @@ public class FragmentEditUser extends Fragment {
         nameEditText = view.findViewById(R.id.cardEditNameInfo);
         phoneEditText = view.findViewById(R.id.cardEditPhoneInfo);
         emailEditText = view.findViewById(R.id.cardInstaInfo);
+        exitBtn = view.findViewById(R.id.cardExitBtn);
     }
 
     public void setSettingValue() {
