@@ -3,30 +3,33 @@ package com.example.madinandroid;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+import static com.example.madinandroid.MainActivity.belongs;
 import static com.example.madinandroid.MainActivity.books;
 
 public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImageListener {
     private RecyclerView recyclerview;
-    RecyclerGalleryAdapter recyclerAdapter;
+    private RecyclerGalleryAdapter recyclerAdapter;
 
     private ArrayList<Integer> imgSrc;
+    private ArrayList<String> imgName;
     private ArrayList<Integer> count;
 
     @Nullable
@@ -37,7 +40,7 @@ public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImag
         jsonDataReset();
 
         recyclerview = (RecyclerView)view.findViewById(R.id.galleryRecyclerView);
-        recyclerAdapter = new RecyclerGalleryAdapter(getActivity(), imgSrc, count, this);
+        recyclerAdapter = new RecyclerGalleryAdapter(getActivity(), imgSrc, count, imgName, this);
         recyclerview.setAdapter(recyclerAdapter);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), 2));
 
@@ -50,7 +53,7 @@ public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImag
         Log.d("LifeCycleCheck", "I am in onResume in Fragment1");
         jsonDataReset();
 
-        recyclerAdapter.setItems(imgSrc, count);
+        recyclerAdapter.setItems(imgSrc, count, imgName);
         recyclerAdapter.notifyDataSetChanged();
     }
 
@@ -62,8 +65,53 @@ public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImag
         startActivity(intent);
     }
 
+    @Override
+    public void onLongImageClick(int position) {
+        Toast.makeText(getActivity() , "long click", Toast.LENGTH_SHORT).show();
+
+        RecyclerView.ViewHolder viewHolder = recyclerview.findViewHolderForAdapterPosition(position);
+        recyclerAdapter.changeTexttoEdit((RecyclerGalleryAdapter.GalleryViewHolder)viewHolder, position);
+    }
+
+    @Override
+    public boolean onEnterInput(View view, int keyCode, KeyEvent event, int position) {
+        if((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+            RecyclerGalleryAdapter.GalleryViewHolder viewHolder = (RecyclerGalleryAdapter.GalleryViewHolder)recyclerview.findViewHolderForAdapterPosition(position);
+            String input = viewHolder.editName.getText().toString();
+            imgName.set(position, input);
+            String fileName = getResources().getResourceEntryName(imgSrc.get(position));
+            try {
+                for(int i = 0; i < belongs.length(); ++i) {
+                    JSONObject jsonOb = (JSONObject)belongs.get(i);
+                    if(fileName.equals((String)jsonOb.get("image"))) {
+                        jsonOb.put("name", input);
+                        belongs.put(i, jsonOb);
+
+                        break;
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            String json = belongs.toString();
+            PreferenceManager.setString(getActivity(), "belongs", json);
+
+            recyclerAdapter.setItems(imgSrc, count, imgName);
+            recyclerAdapter.notifyDataSetChanged();
+            recyclerAdapter.changeEdittoText((RecyclerGalleryAdapter.GalleryViewHolder)viewHolder, position);
+
+            return true;
+        }
+        return false;
+    }
+
     public void jsonDataReset() {
         imgSrc = new ArrayList<>();
+        imgName = new ArrayList<>();
         count = new ArrayList<>();
 
         try {
@@ -83,6 +131,27 @@ public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImag
             }
         } catch (JSONException j) {
             j.printStackTrace();
+        }
+
+        try {
+            JSONObject tmp = null;
+            for(int i = 0; i < imgSrc.size(); ++i) {
+                int imgSource = (Integer)imgSrc.get(i);
+                for(int j = 0; j < belongs.length(); ++j) {
+                    tmp = (JSONObject)belongs.get(j);
+                    String img = (String)tmp.get("image");
+
+                    int imgID = getActivity().getResources().getIdentifier(img, "drawable", getActivity().getPackageName());
+                    if(imgID == imgSource) {
+                        img = (String)tmp.get("name");
+                        imgName.add(img);
+
+                        break;
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 }

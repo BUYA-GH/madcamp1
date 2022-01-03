@@ -24,13 +24,13 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
 
     static JSONArray books;
+    static JSONArray belongs;
     static int nowId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         // read json file
         String json = PreferenceManager.getString(this, "books");
@@ -48,7 +48,22 @@ public class MainActivity extends AppCompatActivity {
             JSONObject tmp = (JSONObject)books.get(books.length() - 1);
             String ids = (String)tmp.get("id");
             nowId = Integer.parseInt(ids);
+        } catch(IOException | JSONException i) {
+            i.printStackTrace();
+        }
 
+        json = PreferenceManager.getString(this, "belongs");
+        try{
+            if(json.equals("")) {
+                InputStream is = getAssets().open("Belongs.json");
+                int fileSize = is.available();
+
+                byte[] buffer = new byte[fileSize];
+                is.read(buffer);
+                is.close();
+                json = new String(buffer, "UTF-8");
+            }
+            belongs = new JSONArray(json);
         } catch(IOException | JSONException i) {
             i.printStackTrace();
         }
