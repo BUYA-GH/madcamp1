@@ -1,10 +1,13 @@
 package com.example.madinandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 
 import android.os.Bundle;
+
+import android.view.View;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        // read json file
         String json = PreferenceManager.getString(this, "books");
         try{
             if(json.equals("")) {
@@ -47,17 +52,17 @@ public class MainActivity extends AppCompatActivity {
         } catch(IOException | JSONException i) {
             i.printStackTrace();
         }
-        Log.d("CheckLastID", Integer.toString(nowId));
 
+        // tabLayout setting
         tabLayout = (TabLayout)findViewById(R.id.tabs);
-
         viewPager = (ViewPager2)findViewById(R.id.viewPager);
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
 
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_0));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_1));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_2));
+        // set tabIcon and add new tab
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.icon_first));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.icon_second));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.icon_third));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -77,5 +82,9 @@ public class MainActivity extends AppCompatActivity {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
+
+        // off OverScroll mode
+        viewPager.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+
     }
 }
