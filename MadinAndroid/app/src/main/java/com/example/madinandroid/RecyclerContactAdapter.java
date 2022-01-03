@@ -2,14 +2,19 @@ package com.example.madinandroid;
 
 import static com.example.madinandroid.MainActivity.books;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,10 +28,11 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
+import soup.neumorphism.NeumorphButton;
+import soup.neumorphism.NeumorphImageButton;
+
 public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContactAdapter.ContactViewHolder> implements Filterable {
 
-    String[] names, phones, emails, backgroundColors;
-    int[] imgSources;
     Context context;
     JSONArray jsonarray;
     JSONArray jsonarrayFiltered;
@@ -49,19 +55,12 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
 
     @Override
     public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
-        /*
-        holder.nameText.setText(names[position]);
-        holder.phoneText.setText(phones[position]);
-        holder.emailText.setText(emails[position]);
-        holder.imgView.setImageResource(imgSources[position]);
-        holder.imgView.setBackgroundColor(Color.parseColor(backgroundColors[position]));
-         */
 
         try{
             JSONObject tmp = (JSONObject)jsonarrayFiltered.get(position);
             holder.nameText.setText((String)tmp.get("name"));
             holder.phoneText.setText((String)tmp.get("phone"));
-            holder.emailText.setText((String)tmp.get("email"));
+            holder.emailText.setText("@"+(String)tmp.get("email"));
 
             String img_name = (String)tmp.get("image");
             int img_int = context.getResources().getIdentifier(img_name, "drawable", context.getPackageName());
@@ -82,9 +81,9 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
 
         TextView nameText, phoneText, emailText;
         ImageView imgView;
-        View foregroundView, backgroundView;
+        View foregroundView;
         Boolean isClamp = false;
-        Button contactButton;
+        NeumorphButton button_insta, button_call;
 
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,32 +92,54 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
             emailText = itemView.findViewById(R.id.contactEmailView);
             imgView = itemView.findViewById(R.id.contactImageView);
             foregroundView = itemView.findViewById(R.id.contactFg);
-            backgroundView = itemView.findViewById(R.id.contactBg);
 
-            // contactButton Listener
-            contactButton = itemView.findViewById(R.id.contactButton);
-            contactButton.setOnClickListener(new View.OnClickListener() {
+            // contactButton Listener / instagram
+            button_insta = itemView.findViewById(R.id.contactButton_insta);
+            button_insta.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) { // it works for individual view only which isCLamp
                     if(isClamp){
-                        CharSequence text = (CharSequence) nameText.getText();
-                        Toast myToast = Toast.makeText(context, text,1);
-                        myToast.show();
+                        String id =  emailText.getText().toString();
+                        String subUri = "https://www.instagram.com/"+id;
+                        Uri uri = Uri.parse(subUri);
+                        Intent instagram = new Intent(Intent.ACTION_VIEW, uri);
+                        instagram.setPackage("com.instagram.android");
+                        try{
+                            context.startActivity(instagram);
+                        }catch(ActivityNotFoundException e){
+                            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(subUri)));
+                        }
                     }
 
                 }
             });
 
-            // item click Listener
-            itemView.setOnClickListener(new View.OnClickListener() {
+            // contactButton Listener / telephone
+            button_call = itemView.findViewById(R.id.contactButton_call);
+            button_call.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View view) { // it works for individual view only which isCLamp
+                    String num =  phoneText.getText().toString();
+                    String subUri = "tel:"+num;
+                    Uri uri = Uri.parse(subUri);
+                    Intent dial = new Intent(Intent.ACTION_DIAL, uri);
+                    context.startActivity(dial);
+
+                }
+            });
+
+
+
+            // onClick makes blink effect -> implement onTouch
+            itemView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
                     if(isClamp){
                         isClamp = false;
                         foregroundView.setTranslationX(0f);
-                        Toast myToast = Toast.makeText(context, "test",1);
-                        myToast.show();
+                        return true;
                     }
+                    return false;
                 }
             });
 
@@ -176,6 +197,7 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
             jsonarrayFiltered = (JSONArray) filterResults.values;
+            notifyDataSetChanged();
         }
     };
 
