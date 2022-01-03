@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Fragment0">
 
-
     <TextView
         android:id="@+id/frag0_title"
         style="@style/title_txt"
@@ -39,7 +38,6 @@
         <soup.neumorphism.NeumorphCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             app:neumorph_shadowColorLight="@color/light_shadow"
             app:neumorph_shadowColorDark="@color/dark_shadow"
             android:background="@color/background"

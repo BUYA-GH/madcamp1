@@ -57,8 +57,7 @@ public class RecyclerBarAdapter extends RecyclerView.Adapter<RecyclerBarAdapter.
             colorSeekBar = itemView.findViewById(R.id.seekbar);
             this.onSeekBarChangeListener = onSeekBarChangeListener;
 
-            SeekBar seekBar = (SeekBar)itemView.findViewById(R.id.seekbar);
-            seekBar.setOnSeekBarChangeListener(this);
+            colorSeekBar.setOnSeekBarChangeListener(this);
         }
 
         @Override
