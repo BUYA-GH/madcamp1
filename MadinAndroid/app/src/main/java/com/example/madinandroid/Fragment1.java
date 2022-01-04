@@ -68,10 +68,9 @@ public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImag
 
     @Override
     public void onLongImageClick(int position) {
-        Toast.makeText(getActivity() , "Edit Title", Toast.LENGTH_SHORT).show();
-
         RecyclerView.ViewHolder viewHolder = recyclerview.findViewHolderForAdapterPosition(position);
         recyclerAdapter.changeTexttoEdit((RecyclerGalleryAdapter.GalleryViewHolder)viewHolder, position);
+
     }
 
     @Override

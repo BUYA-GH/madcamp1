@@ -9,14 +9,13 @@ Emo-Contact
 - Jeon SeungYoon
 - Lee Hyewon
    
-## 2. Project Result
-### BluePrint Image
+## 2. BluePrint Image
 ![1](./image/png/1.png)
    
 탭 3개로 이루어진 이 주소록 어플리케이션은   
 유저들에게 친화적으로 다가가기 위해 딱딱한 text 대신 이모티콘을 더 활용했습니다.   
    
-### Tab 1 - Contact View
+## 3. Tab 1 - Contact View
 <p>
     <img src="./image/gif/1.gif" width="30%">
     <img src="./image/gif/2.gif" width="30%">
@@ -28,8 +27,12 @@ Emo-Contact
 별표를 통해 중요한 사람을 최상단으로 옮길 수 있습니다.   
 또한 위의 검색창을 통해 원하는 사람을 빠르게 찾을 수 있습니다.
  
-### Tab 2 - Gallery View
-(Tab 2에 관한 gif와 글 넣기.)   
+## 4. Tab 2 - Gallery View
+<p>
+    <img src="./image/gif/3.gif" width="30%">
+    <img src="./image/gif/4.gif" width="30%">
+</p>
+<p></p>
 
 2번째 Tab은 각 등록된 주소록의 사진들을 갤러리로 보여주는 Tab입니다.   
 각 이모티콘은 등록된 사용자의 소속을 의미합니다.   
@@ -40,7 +43,7 @@ Emo-Contact
 카드를 swipe 하면 그 사용자의 정보를 수정할 수 있습니다.   
 정보를 수정한 뒤 Edit 버튼을 눌러 수정하거나, 또는 Delete 버튼을 눌러 삭제할 수 있습니다.   
    
-### Tab 3 - Add View
+## 5. Tab 3 - Add View
 (Tab 3에 관한 gif와 글 넣기.)  
 
 3번째 Tab은 주소록을 등록하는 Tab입니다.   
