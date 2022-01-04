@@ -7,27 +7,62 @@
     android:layout_height="match_parent"
     tools:context=".MakeImoActivity">
 
+
+
     <FrameLayout
         android:id="@+id/btnBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/noBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="no"
-            android:textSize="20dp" />
+        <FrameLayout
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="left">
+            <soup.neumorphism.NeumorphButton
+                app:neumorph_shapeType="basin"
+                android:id="@+id/yesBtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:neumorph_shadowElevation="4dp"
+                app:neumorph_shadowColorDark="@color/dark_shadow"
+                app:neumorph_shadowColorLight="@color/light_shadow"
+                app:neumorph_backgroundColor="@color/background"/>
 
-        <Button
-            android:id="@+id/yesBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="yes"
-            android:textSize="20dp" />
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:src="@drawable/icon_yes" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_gravity="right">
+            <soup.neumorphism.NeumorphButton
+                app:neumorph_shapeType="basin"
+                android:id="@+id/noBtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:neumorph_shadowElevation="4dp"
+                app:neumorph_shadowColorDark="@color/dark_shadow"
+                app:neumorph_shadowColorLight="@color/light_shadow"
+                app:neumorph_backgroundColor="@color/background"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:src="@drawable/icon_no" />
+        </FrameLayout>
+
 
 
     </FrameLayout>
