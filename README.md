@@ -21,6 +21,7 @@ Emoticall
     <img src="./image/gif/2.gif" width="30%">
 </p>
 <p></p>
+
 1번째 Tab은 주소록을 보여주는 Tab입니다.   
 한 주소록에는 이름, 전화번호, Instagram 아이디 그리고 그 사람을 나타내는 이미지가 있습니다.    
 각 주소록을 옆으로 당겨 전화나 Instagram으로 연결 가능하며    
