@@ -1,14 +1,11 @@
 package com.example.madinandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 
 import android.os.Bundle;
-
 import android.view.View;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -99,6 +96,5 @@ public class MainActivity extends AppCompatActivity {
 
         // off OverScroll mode
         viewPager.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
-
     }
 }

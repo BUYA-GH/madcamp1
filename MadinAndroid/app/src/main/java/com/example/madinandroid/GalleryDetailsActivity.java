@@ -39,14 +39,6 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
     private RecyclerView recyclerDetailGallery;
     private RecyclerGalleryDetailAdapter recyclerAdapter;
 
-    private FragmentManager fragmentManager;
-    private FragmentTransaction transaction;
-
-    private FragmentCard fragmentCard;
-    private FragmentEditUser fragmentEdit;
-    // private FragmentEditEmo fragmentEmo;
-    // private FragmentEditColor fragmentColor;
-
     private ViewPager2 viewPager2;
     private CardPagerAdapter cardPagerAdapter;
 
@@ -66,8 +58,6 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
         recyclerAdapter = new RecyclerGalleryDetailAdapter(this, searchImg, names, hexs, this);
         recyclerDetailGallery.setAdapter(recyclerAdapter);
         recyclerDetailGallery.setLayoutManager(new GridLayoutManager(this, 2));
-
-        fragmentManager = getSupportFragmentManager();
     }
 
     @Override
@@ -105,11 +95,11 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
     public void destroyViewPager() {
         cardPagerAdapter.removeAllFragment();
         cardPagerAdapter = null;
-        viewPager2.setElevation(-1);
 
         jsonDataReset();
         recyclerAdapter.setItems(searchImg, names, hexs);
         recyclerAdapter.notifyDataSetChanged();
+        viewPager2.setElevation(-1);
     }
 
     public void jsonDataReset() {
