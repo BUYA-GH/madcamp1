@@ -29,8 +29,8 @@ Emo-Contact
  
 ## 4. Tab 2 - Gallery View
 <p>
-    <img src="./image/gif/3.gif" width="30%">
-    <img src="./image/gif/4.gif" width="30%">
+    <img src="./image/gif/5.gif" width="30%">
+    <img src="./image/gif/6.gif" width="30%">
 </p>
 <p></p>
 
@@ -44,12 +44,14 @@ Emo-Contact
 정보를 수정한 뒤 Edit 버튼을 눌러 수정하거나, 또는 Delete 버튼을 눌러 삭제할 수 있습니다.   
    
 ## 5. Tab 3 - Add View
-(Tab 3에 관한 gif와 글 넣기.)  
+<p>
+    <img src="./image/gif/3.gif" width="30%">
+    <img src="./image/gif/4.gif" width="30%">
+</p>
+<p></p>
 
 3번째 Tab은 주소록을 등록하는 Tab입니다.   
 이모티콘을 눌러 어떻게 이모티콘을 꾸밀 것인지 선택할 수 있고   
 이름, 전화번호, instagram 이름을 기입한 후 추가할 수 있습니다.
 모르는 경우 공란으로 두어도 추가가 가능합니다.   
    
-## 3. Implementation
-(구현한 자세한 내용들)   
