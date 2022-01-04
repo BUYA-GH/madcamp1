@@ -73,6 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/emoImagesSelectView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -135,6 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -142,10 +144,10 @@
 
         <TextView
             android:id="@+id/colorsTextView"
+            style="@style/button_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Color"
-            style = "@style/button_txt"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -154,6 +156,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:overScrollMode="never"
             app:layout_constraintStart_toStartOf="@+id/colorsTextView"
             app:layout_constraintTop_toBottomOf="@+id/colorsTextView" />
 
