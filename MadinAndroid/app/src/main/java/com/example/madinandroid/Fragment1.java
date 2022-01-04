@@ -62,12 +62,13 @@ public class Fragment1 extends Fragment implements RecyclerGalleryAdapter.OnImag
         int img = imgSrc.get(position);
         Intent intent = new Intent(getActivity(), GalleryDetailsActivity.class);
         intent.putExtra("img", getResources().getResourceEntryName(img));
+        intent.putExtra("imgname", imgName.get(position));
         startActivity(intent);
     }
 
     @Override
     public void onLongImageClick(int position) {
-        Toast.makeText(getActivity() , "long click", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity() , "Edit Title", Toast.LENGTH_SHORT).show();
 
         RecyclerView.ViewHolder viewHolder = recyclerview.findViewHolderForAdapterPosition(position);
         recyclerAdapter.changeTexttoEdit((RecyclerGalleryAdapter.GalleryViewHolder)viewHolder, position);

@@ -28,6 +28,8 @@ import java.util.zip.Inflater;
 
 import static com.example.madinandroid.MainActivity.books;
 
+import soup.neumorphism.NeumorphButton;
+
 public class GalleryDetailsActivity extends AppCompatActivity implements RecyclerGalleryDetailAdapter.OnImageListener {
     private int searchImg;
     private ArrayList<String> names;
@@ -37,6 +39,9 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
     private ArrayList<Integer> ids;
 
     private RecyclerView recyclerDetailGallery;
+    private Button backBtn;
+    private TextView albumtitle;
+    private String albumname;
     private RecyclerGalleryDetailAdapter recyclerAdapter;
 
     private FragmentManager fragmentManager;
@@ -58,17 +63,29 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
 
         Intent intent = getIntent();
         String filename = intent.getExtras().getString("img");
+        albumname = intent.getExtras().getString("imgname");
         searchImg = getResources().getIdentifier(filename, "drawable", getPackageName());
 
         jsonDataReset();
 
         recyclerDetailGallery = (RecyclerView)findViewById(R.id.galleryDetailRecyclerView);
+        backBtn = (Button)findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        albumtitle = (TextView)findViewById(R.id.albumtitle);
+        albumtitle.setText(albumname);
+
         recyclerAdapter = new RecyclerGalleryDetailAdapter(this, searchImg, names, hexs, this);
         recyclerDetailGallery.setAdapter(recyclerAdapter);
         recyclerDetailGallery.setLayoutManager(new GridLayoutManager(this, 2));
 
         fragmentManager = getSupportFragmentManager();
     }
+
 
     @Override
     public void onImageClick(int position) {

@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2328125" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/drawable/bg_contactsearch.xml" value="0.1390625" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/drawable/edge.xml" value="0.2359375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/drawable/icon_call.xml" value="0.1890625" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/drawable/icon_insta.xml" value="0.1890625" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/drawable/icon_no.xml" value="0.1765625" />
@@ -22,10 +23,15 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/font/raleway_medium.xml" value="0.246875" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/font/raleway_regular.xml" value="0.246875" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/activity_splash.xml" value="0.24818840579710144" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/bar_row.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/contact_row.xml" value="0.6518218623481782" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/fragment0.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/fragment1.xml" value="0.21979166666666666" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/fragment2.xml" value="0.2" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/gallery_detail.xml" value="0.21979166666666666" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/gallery_detail_grid.xml" value="0.21979166666666666" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/gallery_grid.xml" value="0.8" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/imo_row.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/madcamp1/MadinAndroid/app/src/main/res/layout/make_imo.xml" value="0.21666666666666667" />
       </map>

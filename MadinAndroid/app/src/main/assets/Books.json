@@ -1,46 +1,46 @@
 [
   {
     "id": 1,
-    "name": "Jang Heonjae",
+    "name": "JiYong",
     "phone": "010-4657-5796",
-    "email": "@soundscape_c",
+    "email": "@xxxibgdrgn",
     "image": "img_cat",
     "color": "#3D949C",
     "star" : false
   },
   {
     "id": 2,
-    "name": "Lee Dala",
+    "name": "JiWon",
     "phone": "010-0987-6543",
-    "email": "@naverBest",
+    "email": "@geewonii",
     "image": "img_dog",
     "color": "#2CAD62",
     "star" : false
   },
   {
     "id": 3,
-    "name": "Park Maba",
+    "name": "SeoJun",
     "phone": "010-0468-4821",
-    "email": "@zmffkfk12",
-    "image": "img_dog",
+    "email": "@bn_sj2013",
+    "image": "img_party",
     "color": "#D678A7",
     "star" : false
   },
   {
     "id": 4,
-    "name": "Choi Saa",
+    "name": "KyungHo",
     "phone": "010-9753-1573",
-    "email": "@tkdktkdk11",
-    "image": "img_dog",
+    "email": "@jstar_allallj",
+    "image": "img_clown",
     "color": "#C3D4ED",
     "star" : false
   },
   {
     "id": 5,
-    "name": "Jung jacha",
+    "name": "ChungHa",
     "phone": "010-4259-1385",
-    "email": "@RaiRaiChaChaCHa",
-    "image": "img_cat",
+    "email": "@chungha_official",
+    "image": "img_heart",
     "color": "#814DA5",
     "star" : false
   }

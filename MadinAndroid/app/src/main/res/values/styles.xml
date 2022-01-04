@@ -21,6 +21,11 @@
         <item name="fontFamily">@font/raleway_bold</item>
         <item name="android:textColor">@color/medium_gray</item>
     </style>
+    <style name="num_txt">
+        <item name="android:textSize">20dp</item>
+        <item name="fontFamily">@font/raleway_bold</item>
+        <item name="android:textColor">@color/medium_gray</item>
+    </style>
     <style name="hint_txt">
         <item name="android:textSize">15dp</item>
         <item name="fontFamily">@font/raleway_medium</item>
