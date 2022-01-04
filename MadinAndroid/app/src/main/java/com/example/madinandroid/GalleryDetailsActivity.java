@@ -29,6 +29,7 @@ import java.util.zip.Inflater;
 import static com.example.madinandroid.MainActivity.books;
 
 import soup.neumorphism.NeumorphButton;
+import soup.neumorphism.NeumorphCardView;
 
 public class GalleryDetailsActivity extends AppCompatActivity implements RecyclerGalleryDetailAdapter.OnImageListener {
     private int searchImg;

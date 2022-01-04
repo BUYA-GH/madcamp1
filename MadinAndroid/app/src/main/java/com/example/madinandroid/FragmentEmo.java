@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -20,7 +21,7 @@ public class FragmentEmo extends Fragment implements RecyclerSmallImoAdapter.OnI
     private int image;
 
     private ImageView imgEmoView;
-    private ImageButton exitBtn;
+    private Button exitBtn;
     private RecyclerView imgEmoRecyclerView;
     private RecyclerSmallImoAdapter recyclerSmallImoAdapter;
 

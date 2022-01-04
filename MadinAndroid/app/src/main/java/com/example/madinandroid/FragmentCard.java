@@ -26,7 +26,7 @@ public class FragmentCard extends Fragment {
     private ImageView cardImageView;
     private TextView cardNameText, cardPhoneText, cardEmailText;
     private Button cardEditBtn, cardDeleteBtn;
-    private ImageButton exitBtn;
+    private Button exitBtn;
 
     @Nullable
     @Override
