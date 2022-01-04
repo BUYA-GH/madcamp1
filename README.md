@@ -9,13 +9,7 @@ Emoticall
 - Jeon SeungYoon
 - Lee Hyewon
    
-## 2. BluePrint Image
-![1](./image/png/1.png)
-   
-탭 3개로 이루어진 이 주소록 어플리케이션은   
-유저들에게 친화적으로 다가가기 위해 딱딱한 text 대신 이모티콘을 더 활용했습니다.   
-   
-## 3. Tab 1 - Contact View
+## 2. Tab 1 - Contact View
 <p>
     <img src="./image/gif/1.gif" width="30%">
     <img src="./image/gif/2.gif" width="30%">
@@ -28,7 +22,7 @@ Emoticall
 별표를 통해 중요한 사람을 최상단으로 옮길 수 있습니다.     
 또한 위의 검색창을 통해 원하는 사람을 빠르게 찾을 수 있습니다.     
  
-## 4. Tab 2 - Gallery View
+## 3. Tab 2 - Gallery View
 <p>
     <img src="./image/gif/5.gif" width="30%">
     <img src="./image/gif/6.gif" width="30%">
@@ -44,7 +38,7 @@ Emoticall
 카드를 swipe 하면 그 사용자의 정보를 수정할 수 있습니다.   
 정보를 수정한 뒤 Edit 버튼을 눌러 수정하거나, 또는 Delete 버튼을 눌러 삭제할 수 있습니다.   
    
-## 5. Tab 3 - Add View
+## 4. Tab 3 - Add View
 <p>
     <img src="./image/gif/3.gif" width="30%">
     <img src="./image/gif/4.gif" width="30%">
@@ -56,7 +50,7 @@ Emoticall
 이름, 전화번호, instagram 이름을 기입한 후 추가할 수 있습니다.
 모르는 경우 공란으로 두어도 추가가 가능합니다.   
    
-## 6. License
+## 5. License
 ```
     Copyright [2021] [BUYA-GH, hye1ee]
 
