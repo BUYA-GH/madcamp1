@@ -24,7 +24,18 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         fragments.add(new FragmentEditUser());
         fragments.add(new FragmentEmo());
         fragments.add(new FragmentColor());
-}
+    }
+
+    @NonNull
+    @Override
+    public Fragment createFragment(int position) {
+        return fragments.get(position);
+    }
+
+    @Override
+    public int getItemCount() {
+        return fragments.size();
+    }
 
     public void setInfoOfUser(String name, String phone, String email, int image, String color, int id) {
         this.name = name;
@@ -37,7 +48,7 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         sendInfoToFragments();
     }
 
-    public void sendInfoToFragments() {
+    public Bundle wrapBundle() {
         Bundle bundle = new Bundle(6);
         bundle.putString("name", name);
         bundle.putString("phone", phone);
@@ -45,6 +56,12 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         bundle.putInt("image", image);
         bundle.putString("color", color);
         bundle.putInt("id", id);
+
+        return bundle;
+    }
+
+    public void sendInfoToFragments() {
+        Bundle bundle = wrapBundle();
 
         FragmentCard fragmentCard = (FragmentCard)fragments.get(0);
         fragmentCard.setByBundle(bundle);
@@ -57,13 +74,7 @@ public class CardPagerAdapter extends FragmentStateAdapter {
     }
 
     public void updateInfoToFragments() {
-        Bundle bundle = new Bundle(6);
-        bundle.putString("name", name);
-        bundle.putString("phone", phone);
-        bundle.putString("email", email);
-        bundle.putInt("image", image);
-        bundle.putString("color", color);
-        bundle.putInt("id", id);
+        Bundle bundle = wrapBundle();
 
         FragmentCard fragmentCard = (FragmentCard)fragments.get(0);
         fragmentCard.setByBundle(bundle);
@@ -80,17 +91,6 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         FragmentColor fragmentColor = (FragmentColor)fragments.get(3);
         fragmentColor.setByBundle(bundle);
         fragmentColor.setSettingValue();
-    }
-
-    @NonNull
-    @Override
-    public Fragment createFragment(int position) {
-        return fragments.get(position);
-    }
-
-    @Override
-    public int getItemCount() {
-        return fragments.size();
     }
 
     public void getAllSettingFromFragment() {

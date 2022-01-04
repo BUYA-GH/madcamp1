@@ -3,6 +3,7 @@ package com.example.madinandroid;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +42,7 @@ public class Fragment2 extends Fragment {
     private EditText phoneEdit;
     private EditText emailEdit;
     private int imgSrc = R.drawable.img_party;
-    private int[] colorValues = {250, 250, 250};
+    private int[] colorValues = {255, 255, 255};
 
     private ActivityResultLauncher<Intent> resultLauncher;
 
@@ -63,6 +64,7 @@ public class Fragment2 extends Fragment {
         nameEdit = view.findViewById(R.id.nameInput);
         emailEdit = view.findViewById(R.id.emailInput);
         phoneEdit = view.findViewById(R.id.phoneInput);
+        phoneEdit.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
