@@ -17,8 +17,10 @@ Emo-Contact
 유저들에게 친화적으로 다가가기 위해 딱딱한 text 대신 이모티콘을 더 활용했습니다.   
    
 ### Tab 1 - Contact View
+<p>
 <img src="./image/gif/1.gif" width="30%">
-<img src="./image/gif/2.gif" width="30%">   
+<img src="./image/gif/2.gif" width="30%">
+</p>
   
 1번째 Tab은 주소록을 보여주는 Tab입니다.   
 한 주소록에는 이름, 전화번호, Instagram 아이디 그리고 그 사람을 나타내는 이미지가 있습니다.   
