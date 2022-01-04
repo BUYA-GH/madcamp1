@@ -56,3 +56,13 @@ Emoticall
 이름, 전화번호, instagram 이름을 기입한 후 추가할 수 있습니다.
 모르는 경우 공란으로 두어도 추가가 가능합니다.   
    
+## 6. License
+```
+Copyright [2021] [BUYA-GH, hye1ee]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+```
