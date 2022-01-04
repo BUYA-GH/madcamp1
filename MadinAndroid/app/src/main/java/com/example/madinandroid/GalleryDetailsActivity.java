@@ -36,6 +36,7 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
     private ArrayList<String> hexs;
     private ArrayList<Integer> ids;
 
+    private CardView cardView;
     private RecyclerView recyclerDetailGallery;
     private RecyclerGalleryDetailAdapter recyclerAdapter;
 
@@ -54,16 +55,20 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
 
         jsonDataReset();
 
+        cardView = findViewById(R.id.editCardView);
+        cardView.setElevation(-1);
+
         recyclerDetailGallery = (RecyclerView)findViewById(R.id.galleryDetailRecyclerView);
         recyclerAdapter = new RecyclerGalleryDetailAdapter(this, searchImg, names, hexs, this);
         recyclerDetailGallery.setAdapter(recyclerAdapter);
         recyclerDetailGallery.setLayoutManager(new GridLayoutManager(this, 2));
+
     }
 
     @Override
     public void onImageClick(int position) {
         viewPager2 = findViewById(R.id.editViewPager2);
-        viewPager2.setElevation(1);
+        cardView.setElevation(1);
         cardPagerAdapter = new CardPagerAdapter(getSupportFragmentManager(), getLifecycle());
         cardPagerAdapter.setInfoOfUser(names.get(position), phones.get(position), emails.get(position), searchImg,
                 hexs.get(position), ids.get(position));
@@ -99,7 +104,7 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
         jsonDataReset();
         recyclerAdapter.setItems(searchImg, names, hexs);
         recyclerAdapter.notifyDataSetChanged();
-        viewPager2.setElevation(-1);
+        cardView.setElevation(-1);
     }
 
     public void jsonDataReset() {
