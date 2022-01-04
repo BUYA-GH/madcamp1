@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,88 +30,48 @@ public class FragmentCard extends Fragment {
     private String name, phone, email, color, id;
     private int image;
 
-    private ImageView imageView;
-    private TextView nameText, phoneText, emailText;
-    private Button editBtn, deleteBtn;
-
-    private FragmentManager fragmentManager;
-
-    private ActivityResultLauncher<Intent> resultLauncher;
+    private ImageView cardImageView;
+    private TextView cardNameText, cardPhoneText, cardEmailText;
+    private Button cardEditBtn, cardDeleteBtn;
+    private ImageButton exitBtn;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_card_sheet, container, false);
 
-        id = getArguments().getString("id");
-        try {
-            for(int i = 0; i < books.length(); ++i) {
-                JSONObject jsonOb = (JSONObject)books.get(i);
-                if((String)jsonOb.get("id") == id) {
-                    name = (String)jsonOb.get("name");
-                    phone = (String)jsonOb.get("phone");
-                    email = (String)jsonOb.get("email");
-                    color = (String)jsonOb.get("color");
-                    String img = (String)jsonOb.get("image");
-                    image = getActivity().getResources().getIdentifier(img, "drawable", getActivity().getPackageName());
+        setViewByID(view);
+        setSettingValue();
 
-                    break;
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        imageView = view.findViewById(R.id.cardImageView);
-        nameText = view.findViewById(R.id.cardNameInfo);
-        phoneText = view.findViewById(R.id.cardPhoneInfo);
-        emailText = view.findViewById(R.id.cardInstaInfo);
-
-        imageView.setBackgroundColor(Color.parseColor(color));
-        imageView.setImageResource(image);
-        nameText.setText(name);
-        phoneText.setText(phone);
-        emailText.setText(email);
-
-        editBtn = view.findViewById(R.id.cardEditBtn);
-        deleteBtn = view.findViewById(R.id.cardDeleteBtn);
-
-        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult result) {
-                if(result.getResultCode() == Activity.RESULT_OK) {
-                    Intent intent = result.getData();
-                    name = intent.getStringExtra("name");
-                    phone = intent.getStringExtra("phone");
-                    email = intent.getStringExtra("email");
-                    image = intent.getIntExtra("img", R.drawable.img_cat);
-                    color = intent.getStringExtra("colors");
-
-                    nameText.setText(name);
-                    phoneText.setText(phone);
-                    emailText.setText(email);
-                    imageView.setImageResource(image);
-                    imageView.setBackgroundColor(Color.parseColor(color));
-                }
-            }
-        });
-
-        editBtn.setOnClickListener(new View.OnClickListener() {
+        cardEditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ContactsEditActivity.class);
-                intent.putExtra("id", id);
-                intent.putExtra("name", name);
-                intent.putExtra("phone", phone);
-                intent.putExtra("email", email);
-                intent.putExtra("img", image);
-                intent.putExtra("color", color);
+                try{
+                    for(int i = 0; i < books.length(); ++i) {
+                        JSONObject jsonOb = (JSONObject)books.get(i);
+                        if(id.equals((String)jsonOb.get("id"))) {
+                            jsonOb.put("name", name);
+                            jsonOb.put("phone", phone);
+                            jsonOb.put("email", email);
+                            jsonOb.put("image", getResources().getResourceEntryName(image));
+                            jsonOb.put("color", color);
 
-                resultLauncher.launch(intent);
+                            books.put(i, jsonOb);
+                            break;
+                        }
+                    }
+                } catch (JSONException j) {
+                    j.printStackTrace();
+                }
+
+                String json = books.toString();
+                PreferenceManager.setString(getActivity(), "books", json);
+
+                ((GalleryDetailsActivity)getActivity()).destroyViewPager();
             }
         });
 
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
+        cardDeleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -129,12 +89,45 @@ public class FragmentCard extends Fragment {
                 String json = books.toString();
                 PreferenceManager.setString(getActivity(), "books", json);
 
-                fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().remove(FragmentCard.this).commit();
+                ((GalleryDetailsActivity)getActivity()).destroyViewPager();
+            }
+        });
+
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((GalleryDetailsActivity)getActivity()).destroyViewPager();
             }
         });
 
         return view;
+    }
+
+    public void setByBundle(Bundle bundle) {
+        name = bundle.getString("name");
+        phone = bundle.getString("phone");
+        email = bundle.getString("email");
+        color = bundle.getString("color");
+        image = bundle.getInt("image");
+        id = bundle.getString("id");
+    }
+
+    public void setViewByID(View view) {
+        cardImageView = view.findViewById(R.id.cardImageView);
+        cardNameText = view.findViewById(R.id.cardNameInfo);
+        cardPhoneText = view.findViewById(R.id.cardPhoneInfo);
+        cardEmailText = view.findViewById(R.id.cardInstaInfo);
+        cardEditBtn = view.findViewById(R.id.cardEditBtn);
+        cardDeleteBtn = view.findViewById(R.id.cardDeleteBtn);
+        exitBtn = view.findViewById(R.id.cardExitBtn);
+    }
+
+    public void setSettingValue() {
+        cardImageView.setBackgroundColor(Color.parseColor(color));
+        cardImageView.setImageResource(image);
+        cardNameText.setText(name);
+        cardPhoneText.setText(phone);
+        cardEmailText.setText(email);
     }
 
 }

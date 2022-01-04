@@ -20,6 +20,5 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".MakeImoActivity"/>
         <activity android:name=".GalleryDetailsActivity"/>
-        <activity android:name=".ContactsEditActivity"/>
     </application>
 </manifest>
