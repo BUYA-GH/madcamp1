@@ -4,124 +4,106 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragmentCardEditContainer"
     android:layout_width="match_parent"
-    android:layout_height="360dp"
-    >
+    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
+    <TextView
+        android:id="@+id/cardEditTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:text="Edit"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/cardExitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_exit"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/cardEditImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_launcher_foreground"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/cardEditTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="5dp">
+        />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/cardEditNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:text="Name"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardEditImageView" />
 
-            <TextView
-                android:id="@+id/cardEditTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginEnd="40dp"
-                android:text="Edit"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/cardEditNameInfo"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:text="Name"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardEditNameTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cardEditNameTitle" />
 
-            <ImageButton
-                android:id="@+id/cardExitBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_exit"
-                android:layout_margin="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+    <TextView
+        android:id="@+id/cardEditPhoneTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Phone"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@+id/cardEditNameTitle"
+        app:layout_constraintTop_toBottomOf="@id/cardEditNameTitle" />
 
-            <ImageView
-                android:id="@+id/cardEditImageView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_launcher_foreground"
-                android:layout_marginTop="20dp"
-                app:layout_constraintTop_toBottomOf="@id/cardEditTitle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
+    <EditText
+        android:id="@+id/cardEditPhoneInfo"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:text="Phone"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardEditPhoneTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cardEditPhoneTitle" />
 
-            <TextView
-                android:id="@+id/cardEditNameTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="40dp"
-                android:text="Name"
-                android:textSize="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardEditImageView" />
+    <TextView
+        android:id="@+id/cardEditInstaTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Insta"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@id/cardEditPhoneTitle"
+        app:layout_constraintTop_toBottomOf="@id/cardEditPhoneTitle" />
 
-            <EditText
-                android:id="@+id/cardEditNameInfo"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
-                android:text="Name"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardEditNameTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/cardEditNameTitle" />
+    <EditText
+        android:id="@+id/cardInstaInfo"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:text="Insta"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardEditInstaTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cardEditInstaTitle" />
 
-            <TextView
-                android:id="@+id/cardEditPhoneTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Phone"
-                android:textSize="15dp"
-                app:layout_constraintStart_toStartOf="@+id/cardEditNameTitle"
-                app:layout_constraintTop_toBottomOf="@id/cardEditNameTitle" />
-
-            <EditText
-                android:id="@+id/cardEditPhoneInfo"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
-                android:text="Phone"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardEditPhoneTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/cardEditPhoneTitle" />
-
-            <TextView
-                android:id="@+id/cardEditInstaTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Insta"
-                android:textSize="15dp"
-                app:layout_constraintStart_toStartOf="@id/cardEditPhoneTitle"
-                app:layout_constraintTop_toBottomOf="@id/cardEditPhoneTitle" />
-
-            <EditText
-                android:id="@+id/cardInstaInfo"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
-                android:text="Insta"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardEditInstaTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/cardEditInstaTitle" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

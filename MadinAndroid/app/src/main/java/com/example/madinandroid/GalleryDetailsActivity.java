@@ -38,19 +38,12 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
     private ArrayList<String> hexs;
     private ArrayList<Integer> ids;
 
+    private CardView cardView;
     private RecyclerView recyclerDetailGallery;
     private Button backBtn;
     private TextView albumtitle;
     private String albumname;
     private RecyclerGalleryDetailAdapter recyclerAdapter;
-
-    private FragmentManager fragmentManager;
-    private FragmentTransaction transaction;
-
-    private FragmentCard fragmentCard;
-    private FragmentEditUser fragmentEdit;
-    // private FragmentEditEmo fragmentEmo;
-    // private FragmentEditColor fragmentColor;
 
     private ViewPager2 viewPager2;
     private CardPagerAdapter cardPagerAdapter;
@@ -68,6 +61,9 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
 
         jsonDataReset();
 
+        cardView = findViewById(R.id.editCardView);
+        cardView.setElevation(-1);
+
         recyclerDetailGallery = (RecyclerView)findViewById(R.id.galleryDetailRecyclerView);
         backBtn = (Button)findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -83,14 +79,13 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
         recyclerDetailGallery.setAdapter(recyclerAdapter);
         recyclerDetailGallery.setLayoutManager(new GridLayoutManager(this, 2));
 
-        fragmentManager = getSupportFragmentManager();
     }
 
 
     @Override
     public void onImageClick(int position) {
         viewPager2 = findViewById(R.id.editViewPager2);
-        viewPager2.setElevation(1);
+        cardView.setElevation(1);
         cardPagerAdapter = new CardPagerAdapter(getSupportFragmentManager(), getLifecycle());
         cardPagerAdapter.setInfoOfUser(names.get(position), phones.get(position), emails.get(position), searchImg,
                 hexs.get(position), ids.get(position));
@@ -122,11 +117,11 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
     public void destroyViewPager() {
         cardPagerAdapter.removeAllFragment();
         cardPagerAdapter = null;
-        viewPager2.setElevation(-1);
 
         jsonDataReset();
         recyclerAdapter.setItems(searchImg, names, hexs);
         recyclerAdapter.notifyDataSetChanged();
+        cardView.setElevation(-1);
     }
 
     public void jsonDataReset() {

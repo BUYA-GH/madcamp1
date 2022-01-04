@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResult;
@@ -45,9 +44,6 @@ public class Fragment2 extends Fragment {
     private int[] colorValues = {255, 255, 255};
 
     private ActivityResultLauncher<Intent> resultLauncher;
-
-    private String name, phone, email, color;
-    private int image;
 
     @Nullable
     @Override
