@@ -18,7 +18,7 @@ Emo-Contact
    
 ### Tab 1 - Contact View
 <p>
-<img src="./image/gif/1.gif">
+<img src="./image/gif/1.gif" width="30%">
 <img src="./image/gif/2.gif" width="30%">
 </p>
   
