@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -23,7 +24,7 @@ public class FragmentColor extends Fragment implements RecyclerSmallBarAdapter.O
     private int image;
 
     private ImageView imgColorView;
-    private ImageButton exitBtn;
+    private Button exitBtn;
     private RecyclerView imgColorRecyclerView;
     private RecyclerSmallBarAdapter recyclerSmallBarAdapter;
 
