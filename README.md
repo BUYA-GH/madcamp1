@@ -3,7 +3,7 @@ Assignment 1 week
 몰입캠프 1주차 프로젝트입니다.
    
 ## 0. Project Name
-Emo-Contact   
+Emoticall   
    
 ## 1. Member
 - Jeon SeungYoon
