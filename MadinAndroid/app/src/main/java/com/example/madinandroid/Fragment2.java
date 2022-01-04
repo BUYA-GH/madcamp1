@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -119,6 +120,7 @@ public class Fragment2 extends Fragment {
 
                 String json = books.toString();
                 PreferenceManager.setString(getActivity(), "books", json);
+                Toast.makeText(getActivity(), "Success!", Toast.LENGTH_LONG).show();
             }
         });
 
