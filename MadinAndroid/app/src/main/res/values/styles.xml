@@ -16,4 +16,19 @@
         <item name="fontFamily">@font/raleway_medium</item>
         <item name="android:textColor">@color/medium_gray</item>
     </style>
+    <style name="button_txt">
+        <item name="android:textSize">18dp</item>
+        <item name="fontFamily">@font/raleway_bold</item>
+        <item name="android:textColor">@color/medium_gray</item>
+    </style>
+    <style name="hint_txt">
+        <item name="android:textSize">15dp</item>
+        <item name="fontFamily">@font/raleway_medium</item>
+        <item name="android:textColor">@color/light_gray</item>
+    </style>
+
+    <style name="neumorph_emoji">
+        <item name="neumorph_cornerFamily">rounded</item>
+        <item name="neumorph_cornerSize">110dp</item>
+    </style>
 </resources>

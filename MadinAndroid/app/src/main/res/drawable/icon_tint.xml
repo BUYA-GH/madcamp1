@@ -5,5 +5,5 @@
         android:color="@color/dark_gray"/>
     <item
         android:state_selected="false"
-        android:color="@color/light_gray"/>
+        android:color="@color/EXlight_gray"/>
 </selector>

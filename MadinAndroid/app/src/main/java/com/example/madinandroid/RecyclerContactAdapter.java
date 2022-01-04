@@ -7,11 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -38,10 +40,34 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
     JSONArray jsonarrayFiltered;
     
 
-    public RecyclerContactAdapter(Context ct, JSONArray array) {
+    public RecyclerContactAdapter(Context ct, JSONArray array) throws JSONException {
         context = ct;
         jsonarray = array;
-        jsonarrayFiltered = jsonarray;
+        jsonarrayFiltered = reorderArray(array);
+    }
+    public void refresh(JSONArray array) throws JSONException {
+        jsonarray = array;
+        jsonarrayFiltered = reorderArray(array);
+        int test = jsonarrayFiltered.length();
+        Log.d("test", String.valueOf(test));
+    }
+
+
+    public JSONArray reorderArray(JSONArray filteredArray) throws JSONException {
+        JSONArray result = new JSONArray();
+        for(int i=0 ; i<filteredArray.length(); i++){
+            JSONObject tmp = filteredArray.getJSONObject(i);
+            if((Boolean)tmp.get("star") == true){
+                result.put(tmp);
+            }
+        }
+        for(int i=0 ; i<filteredArray.length(); i++){
+            JSONObject tmp = filteredArray.getJSONObject(i);
+            if((Boolean)tmp.get("star") == false){
+                result.put(tmp);
+            }
+        }
+        return result;
     }
 
 
@@ -66,6 +92,7 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
             int img_int = context.getResources().getIdentifier(img_name, "drawable", context.getPackageName());
             holder.imgView.setImageResource(img_int);
             holder.imgView.setBackgroundColor(Color.parseColor((String)tmp.get("color")));
+            holder.starBtn.setChecked((Boolean)tmp.get("star"));
         } catch(JSONException j) {
             j.printStackTrace();
         }
@@ -84,6 +111,7 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
         View foregroundView;
         Boolean isClamp = false;
         NeumorphButton button_insta, button_call;
+        CheckBox starBtn;
 
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,6 +121,7 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
             imgView = itemView.findViewById(R.id.contactImageView);
             foregroundView = itemView.findViewById(R.id.contactFg);
 
+
             // contactButton Listener / instagram
             button_insta = itemView.findViewById(R.id.contactButton_insta);
             button_insta.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +129,7 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
                 public void onClick(View view) { // it works for individual view only which isCLamp
                     if(isClamp){
                         String id =  emailText.getText().toString();
+                        id = id.substring(1,id.length());
                         String subUri = "https://www.instagram.com/"+id;
                         Uri uri = Uri.parse(subUri);
                         Intent instagram = new Intent(Intent.ACTION_VIEW, uri);
@@ -143,6 +173,27 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
                 }
             });
 
+
+            starBtn = itemView.findViewById(R.id.starbtn);
+            starBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int i = getAdapterPosition();
+
+                    try{
+                        JSONObject tmp = (JSONObject)jsonarrayFiltered.getJSONObject(i);
+                        if(starBtn.isChecked()){
+                            tmp.put("star",true);
+                        }else{
+                            tmp.put("star",false);
+                        }
+
+                    }catch (JSONException e) { e.printStackTrace();}
+                    notifyDataSetChanged();
+                    getFilter().filter("");
+                }
+            });
+
         }
 
         public View getView(){
@@ -155,6 +206,7 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
         public Boolean getIsClamp(){
             return isClamp;
         }
+        public Boolean IsChecked() { return starBtn.isChecked(); }
 
     }
 
@@ -196,9 +248,13 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
 
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            jsonarrayFiltered = (JSONArray) filterResults.values;
+            try {
+                jsonarrayFiltered = reorderArray((JSONArray)filterResults.values);
+            } catch (JSONException e) { e.printStackTrace(); }
             notifyDataSetChanged();
         }
+
+
     };
 
 

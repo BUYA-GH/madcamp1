@@ -39,15 +39,9 @@ public class Fragment0 extends Fragment {
         View view =  inflater.inflate(R.layout.fragment0,container,false);
         recyclerView = (RecyclerView)view.findViewById(R.id.contactRecyclerView);
         contactSearch = (EditText) view.findViewById(R.id.contactSearch);
-        return view;
-    }
 
-    @Override
-    public void onResume() {
-        Log.d("LifeCycleCheck", "I am in onResume in Fragment0");
-        super.onResume();
-
-        recyclerAdapter = new RecyclerContactAdapter(getActivity(), books);
+        try { recyclerAdapter = new RecyclerContactAdapter(getActivity(), books);
+        } catch (JSONException e) { e.printStackTrace(); }
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -64,6 +58,7 @@ public class Fragment0 extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.d("test","change");
                 recyclerAdapter.getFilter().filter(charSequence);
 
             }
@@ -73,7 +68,19 @@ public class Fragment0 extends Fragment {
             }
         });
 
+        return view;
+    }
 
+    @Override
+    public void onResume() {
+        Log.d("LifeCycleCheck", "I am in onResume in Fragment0");
+        super.onResume();
+        recyclerAdapter.notifyDataSetChanged();
+        try {
+            recyclerAdapter.refresh(books);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
     }
