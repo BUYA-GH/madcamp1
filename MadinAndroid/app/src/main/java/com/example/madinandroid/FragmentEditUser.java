@@ -1,7 +1,6 @@
 package com.example.madinandroid;
 
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,14 +8,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class FragmentEditUser extends Fragment {
-    private String name, phone, email, color, id;
+    private String name, phone, email, color;
     private int image;
 
     private ImageView imgEditView;
@@ -47,7 +44,6 @@ public class FragmentEditUser extends Fragment {
         email = bundle.getString("email");
         color = bundle.getString("color");
         image = bundle.getInt("image");
-        id = bundle.getString("id");
     }
 
     public void setViewByID(View view) {

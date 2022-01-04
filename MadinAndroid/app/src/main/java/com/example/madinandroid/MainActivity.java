@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
             books = new JSONArray(json);
             JSONObject tmp = (JSONObject)books.get(books.length() - 1);
-            String ids = (String)tmp.get("id");
-            nowId = Integer.parseInt(ids);
+            nowId = (Integer)tmp.get("id");
         } catch(IOException | JSONException i) {
             i.printStackTrace();
         }

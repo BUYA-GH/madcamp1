@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CardPagerAdapter extends FragmentStateAdapter {
-    private String name, phone, email, color, id;
-    private int image;
+    private String name, phone, email, color;
+    private int image ,id;
     private List<Fragment> fragments = new ArrayList<>();
 
     public CardPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
@@ -26,7 +26,7 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         fragments.add(new FragmentColor());
 }
 
-    public void setInfoOfUser(String name, String phone, String email, int image, String color, String id) {
+    public void setInfoOfUser(String name, String phone, String email, int image, String color, int id) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,7 +44,7 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         bundle.putString("email", email);
         bundle.putInt("image", image);
         bundle.putString("color", color);
-        bundle.putString("id", id);
+        bundle.putInt("id", id);
 
         FragmentCard fragmentCard = (FragmentCard)fragments.get(0);
         fragmentCard.setByBundle(bundle);
@@ -63,7 +63,7 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         bundle.putString("email", email);
         bundle.putInt("image", image);
         bundle.putString("color", color);
-        bundle.putString("id", id);
+        bundle.putInt("id", id);
 
         FragmentCard fragmentCard = (FragmentCard)fragments.get(0);
         fragmentCard.setByBundle(bundle);

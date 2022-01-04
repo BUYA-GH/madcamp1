@@ -27,8 +27,8 @@ import org.json.JSONObject;
 import static com.example.madinandroid.MainActivity.books;
 
 public class FragmentCard extends Fragment {
-    private String name, phone, email, color, id;
-    private int image;
+    private String name, phone, email, color;
+    private int image, id;
 
     private ImageView cardImageView;
     private TextView cardNameText, cardPhoneText, cardEmailText;
@@ -49,7 +49,7 @@ public class FragmentCard extends Fragment {
                 try{
                     for(int i = 0; i < books.length(); ++i) {
                         JSONObject jsonOb = (JSONObject)books.get(i);
-                        if(id.equals((String)jsonOb.get("id"))) {
+                        if(id == (Integer)jsonOb.get("id")) {
                             jsonOb.put("name", name);
                             jsonOb.put("phone", phone);
                             jsonOb.put("email", email);
@@ -77,7 +77,7 @@ public class FragmentCard extends Fragment {
                 try {
                     for(int i = 0; i < books.length(); ++i) {
                         JSONObject obj = (JSONObject)books.get(i);
-                        if(id.equals((String)obj.get("id"))) {
+                        if(id == (Integer)obj.get("id")) {
                             books.remove(i);
                             break;
                         }
@@ -109,7 +109,7 @@ public class FragmentCard extends Fragment {
         email = bundle.getString("email");
         color = bundle.getString("color");
         image = bundle.getInt("image");
-        id = bundle.getString("id");
+        id = bundle.getInt("id");
     }
 
     public void setViewByID(View view) {

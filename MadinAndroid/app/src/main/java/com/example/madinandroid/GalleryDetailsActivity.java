@@ -34,7 +34,7 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
     private ArrayList<String> phones;
     private ArrayList<String> emails;
     private ArrayList<String> hexs;
-    private ArrayList<String> ids;
+    private ArrayList<Integer> ids;
 
     private RecyclerView recyclerDetailGallery;
     private RecyclerGalleryDetailAdapter recyclerAdapter;
@@ -130,7 +130,7 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
                     phones.add((String)tmp.get("phone"));
                     emails.add((String)tmp.get("email"));
                     hexs.add((String)tmp.get("color"));
-                    ids.add((String)tmp.get("id"));
+                    ids.add((Integer)tmp.get("id"));
                 }
             }
         } catch (JSONException j) {

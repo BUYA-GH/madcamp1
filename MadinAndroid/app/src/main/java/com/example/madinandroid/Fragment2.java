@@ -106,7 +106,7 @@ public class Fragment2 extends Fragment {
 
                 try{
                     JSONObject newOb = new JSONObject();
-                    newOb.put("id", Integer.toString(++nowId));
+                    newOb.put("id", ++nowId);
                     newOb.put("name", n);
                     newOb.put("phone", p);
                     newOb.put("email", e);
