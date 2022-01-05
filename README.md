@@ -49,8 +49,14 @@ Emoticall
 이모티콘을 눌러 어떻게 이모티콘을 꾸밀 것인지 선택할 수 있고   
 이름, 전화번호, instagram 이름을 기입한 후 추가할 수 있습니다.
 모르는 경우 공란으로 두어도 추가가 가능합니다.   
+
+## 5. Flowchart of our project
+<img src="./image/png/1.png" width="80%">
+<img src="./image/png/2.png" width="0%">
+<img src="./image/png/3.png" width="90%">
+<img src="./image/png/4.png" width="50%">
    
-## 5. License
+## 6. License
 ```
     Copyright [2021] [BUYA-GH, hye1ee]
 
