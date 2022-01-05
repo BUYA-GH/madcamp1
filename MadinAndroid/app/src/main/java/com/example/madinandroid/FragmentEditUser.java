@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class FragmentEditUser extends Fragment {
         imgEditView = view.findViewById(R.id.cardEditImageView);
         nameEditText = view.findViewById(R.id.cardEditNameInfo);
         phoneEditText = view.findViewById(R.id.cardEditPhoneInfo);
+        phoneEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
         emailEditText = view.findViewById(R.id.cardInstaInfo);
         exitBtn = view.findViewById(R.id.cardExitBtn);
     }

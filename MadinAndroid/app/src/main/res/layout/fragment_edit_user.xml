@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentCardEditContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -57,21 +58,23 @@
 
     <TextView
         android:id="@+id/cardEditNameTitle"
+        style="@style/sub_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="40dp"
         android:text="Name"
-        style="@style/sub_txt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardEditImageView" />
 
     <EditText
         android:id="@+id/cardEditNameInfo"
         style="@style/sub_txt"
-        android:layout_width="120dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:inputType="text"
+        android:maxLines="1"
         android:text="Name"
         app:layout_constraintBottom_toBottomOf="@+id/cardEditNameTitle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,20 +82,22 @@
 
     <TextView
         android:id="@+id/cardEditPhoneTitle"
+        style="@style/sub_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Phone"
-        style="@style/sub_txt"
         app:layout_constraintStart_toStartOf="@+id/cardEditNameTitle"
         app:layout_constraintTop_toBottomOf="@id/cardEditNameTitle" />
 
     <EditText
         android:id="@+id/cardEditPhoneInfo"
         style="@style/sub_txt"
-        android:layout_width="120dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:inputType="phone"
+        android:maxLines="1"
         android:text="Phone"
         app:layout_constraintBottom_toBottomOf="@+id/cardEditPhoneTitle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,20 +105,22 @@
 
     <TextView
         android:id="@+id/cardEditInstaTitle"
+        style="@style/sub_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Insta"
-        style="@style/sub_txt"
         app:layout_constraintStart_toStartOf="@id/cardEditPhoneTitle"
         app:layout_constraintTop_toBottomOf="@id/cardEditPhoneTitle" />
 
     <EditText
         android:id="@+id/cardInstaInfo"
         style="@style/sub_txt"
-        android:layout_width="120dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
         android:text="Insta"
         app:layout_constraintBottom_toBottomOf="@+id/cardEditInstaTitle"
         app:layout_constraintEnd_toEndOf="parent"

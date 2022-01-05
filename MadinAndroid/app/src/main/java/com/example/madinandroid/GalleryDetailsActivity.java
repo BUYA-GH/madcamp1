@@ -66,6 +66,7 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
         cardView.setElevation(-1);
 
         recyclerDetailGallery = (RecyclerView)findViewById(R.id.galleryDetailRecyclerView);
+
         backBtn = (Button)findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +87,8 @@ public class GalleryDetailsActivity extends AppCompatActivity implements Recycle
     @Override
     public void onImageClick(int position) {
         viewPager2 = findViewById(R.id.editViewPager2);
+        viewPager2.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+
         cardView.setElevation(1);
         cardPagerAdapter = new CardPagerAdapter(getSupportFragmentManager(), getLifecycle());
         cardPagerAdapter.setInfoOfUser(names.get(position), phones.get(position), emails.get(position), searchImg,
