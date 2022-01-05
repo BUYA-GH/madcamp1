@@ -62,17 +62,17 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="40dp"
         android:text="Name"
-        android:textSize="15dp"
+        style="@style/sub_txt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardEditImageView" />
 
     <EditText
         android:id="@+id/cardEditNameInfo"
-        android:layout_width="100dp"
+        style="@style/sub_txt"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="20dp"
         android:text="Name"
-        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardEditNameTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/cardEditNameTitle" />
@@ -83,17 +83,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Phone"
-        android:textSize="15dp"
+        style="@style/sub_txt"
         app:layout_constraintStart_toStartOf="@+id/cardEditNameTitle"
         app:layout_constraintTop_toBottomOf="@id/cardEditNameTitle" />
 
     <EditText
         android:id="@+id/cardEditPhoneInfo"
-        android:layout_width="100dp"
+        style="@style/sub_txt"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="20dp"
         android:text="Phone"
-        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardEditPhoneTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/cardEditPhoneTitle" />
@@ -104,17 +104,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Insta"
-        android:textSize="15dp"
+        style="@style/sub_txt"
         app:layout_constraintStart_toStartOf="@id/cardEditPhoneTitle"
         app:layout_constraintTop_toBottomOf="@id/cardEditPhoneTitle" />
 
     <EditText
         android:id="@+id/cardInstaInfo"
-        android:layout_width="100dp"
+        style="@style/sub_txt"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="20dp"
         android:text="Insta"
-        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardEditInstaTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/cardEditInstaTitle" />
