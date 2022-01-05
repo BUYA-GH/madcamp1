@@ -51,10 +51,10 @@ Emoticall
 모르는 경우 공란으로 두어도 추가가 가능합니다.   
 
 ## 5. Flowchart of our project
-<img src="./image/png/1.png" width="80%">
-<img src="./image/png/2.png" width="0%">
-<img src="./image/png/3.png" width="90%">
-<img src="./image/png/4.png" width="50%">
+<img src="./image/png/1.png" width="50%">
+<img src="./image/png/2.png" width="50%">
+<img src="./image/png/3.png" width="50%">
+<img src="./image/png/4.png" width="34%">
    
 ## 6. License
 ```
